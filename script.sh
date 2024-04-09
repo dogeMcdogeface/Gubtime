@@ -16,12 +16,12 @@ yaml_string="urls:
     description: Another example website"
 
 echo "--------------------------------------------------------------------------"
-echo $1
+echo "$1"
 echo "--------------------------------------------------------------------------"
 echo "$yaml_string"
 echo "--------------------------------------------------------------------------"
 
-yaml_string=$1
+yaml_string="$1"
 # Initialize string to hold output
 output=""
 
