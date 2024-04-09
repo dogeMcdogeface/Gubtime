@@ -1,6 +1,6 @@
+use reqwest::blocking::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
-use reqwest::blocking::Client;
 
 // Define a struct to represent the YAML structure
 #[derive(Debug, Deserialize, Serialize)]
@@ -44,7 +44,7 @@ fn main() {
                 println!("Alias: {}", url_entry.alias);
                 println!("Description: {}", url_entry.description);
                 println!("URL: {}", url_entry.url);
-                
+
                 // Make HTTP request to the URL
                 let client = Client::new();
                 match client.get(&url_entry.url).send() {
@@ -52,7 +52,7 @@ fn main() {
                         println!("HTTP Response Code: {}", response.status());
                     }
                     Err(e) => {
-                        eprintln!("Error making HTTP request: {}", e);
+                        eprintln!("Error making HTTP request: {:?}{:?}", e,  e.status());
                     }
                 }
             }
