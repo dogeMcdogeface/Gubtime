@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "The value of the first argument is: $1"
 # Define the YAML string
 yaml_string="urls:
   - Entry: 
