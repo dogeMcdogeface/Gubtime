@@ -2,8 +2,6 @@ name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
 
 on: [push]  # Trigger the action on push events
 
-
-
 jobs:
   print-hello-secret-curl-websites:
     runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
@@ -15,6 +13,16 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        MULTILINE=$(echo ${{ vars.URLS }})
-        echo "${MULTILINE}"
-        bash script.sh "${{ vars.URLS }}"
+        bash script.sh "urls:
+          - Entry: 
+            url: https://example.com
+            alias: Example
+            description: Example website
+          - Entry: 
+            url: https://google.com
+            alias: Example
+            description: Probably always up, but gonna return 30x (moved)
+          - Entry: 
+            url: https://nonexistentwebsite.noway
+            alias: Nonexistent Example
+            description: Another example website"
