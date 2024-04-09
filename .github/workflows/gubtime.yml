@@ -16,4 +16,6 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        ./script.sh "$env_var"
+        MULTILINE=$(echo ${{ vars.URLS }})
+        echo "${MULTILINE}"
+        bash script.sh "$env_var"
