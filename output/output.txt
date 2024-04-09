@@ -1,0 +1,15 @@
+- entry:
+  - timst: 2024-04-09T21:25:42.932095944Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .049423066
+  - alias: Example
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .089427133
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .025272583
+
