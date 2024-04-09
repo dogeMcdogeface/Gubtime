@@ -1,7 +1,19 @@
 #!/bin/bash
 
 # Define the YAML string
-yaml_string="$1"
+yaml_string="urls:
+  - Entry: 
+    url: https://example.com
+    alias: Example
+    description: Example website
+  - Entry: 
+    url: https://google.com
+    alias: Example
+    description: Probably always up, but gonna return 30x (moved)
+  - Entry: 
+    url: https://nonexistentwebsite.noway
+    alias: Nonexistent Example
+    description: Another example website"
 
 echo "--------------------------------------------------------------------------"
 echo "$1"
@@ -28,6 +40,7 @@ while IFS= read -r line; do
         output+="- alias: $alias"$'\n'
         output+="  description: $description"$'\n'
         output+="  response: $http_status"$'\n'
+        output+="  url: $url"$'\n'
     fi
 done <<< "$yaml_string"
 
