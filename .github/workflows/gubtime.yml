@@ -13,7 +13,7 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        bash script.sh "urls:
+        urls="urls:
           - Entry: 
             url: https://example.com
             alias: Example
@@ -26,3 +26,5 @@ jobs:
             url: https://nonexistentwebsite.noway
             alias: Nonexistent Example
             description: Another example website"
+        
+        bash script.sh "$urls"
