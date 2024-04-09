@@ -21,24 +21,29 @@ jobs:
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
-      LOG_FILE: "log_$(date +%s).yml"  # Calculating the unique identifier in the file name
+      LOG_FILE: "log_"  # Calculating the unique identifier in the file name
+      LOG_FORM: ".yml"  # Calculating the unique identifier in the file name
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Calculate Unified Log Path
+        id: calculate-log-path
+        run: echo "::set-output name=LOG_FULL_PATH::${LOG_PATH}${LOG_FILE}${LOG_FORM}"
+
       - name: Execute Script and Save Output
         id: script-output
         run: |
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
-          bash script.sh "$URLS" >> $LOG_PATH$LOG_FILE
+          bash script.sh "$URLS" >> ${{ steps.calculate-log-path.outputs.LOG_FULL_PATH }}
           
       - name: Commit Changes
         run: |
-          git config --local user.email "${{ env.USER_EMAIL }}"
-          git config --local user.name "${{ env.USER_NAME }}"
-          git add $LOG_PATH$LOG_FILE
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
+          git config --local user.email "${USER_EMAIL}"
+          git config --local user.name "${USER_NAME}"
+          git add ${{ steps.calculate-log-path.outputs.LOG_FULL_PATH }}
+          git commit -m "${COMMIT_MESSAGE}"
       
       - name: Push Changes
         uses: ad-m/github-push-action@master
