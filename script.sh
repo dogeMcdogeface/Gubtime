@@ -1,7 +1,19 @@
 #!/bin/bash
 
 # Define the YAML string
-yaml_string=""
+yaml_string="urls:
+  - Entry: 
+    url: https://example.com
+    alias: Example
+    description: Example website
+  - Entry: 
+    url: https://google.com
+    alias: Example
+    description: Probably always up, but gonna return 30x (moved)
+  - Entry: 
+    url: https://nonexistentwebsite.noway
+    alias: Nonexistent Example
+    description: Another example website"
 
 echo "--------------------------------------------------------------------------"
 echo "$1"
