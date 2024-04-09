@@ -1,14 +1,23 @@
-name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
+name: Rust Build and Run
 
-on: [push]  # Trigger the action on push events
+on: [push, pull_request]
 
 jobs:
-  print-hello-secret-curl-websites:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Execute Script
-      run: bash script.sh "hello" "${{ secrets.SECRET_VARIABLE_NAME }}"
+    - name: Set up Rust
+      uses: actions/setup-rust@v1
+      with:
+        rust-version: '1.55.0' # You can adjust the version as per your requirements
+
+    - name: Build and Run Script
+      run: |
+        cargo build --release
+        ./target/release/main
+#    - name: Execute Script
+#      run: bash script.sh "hello" "${{ secrets.SECRET_VARIABLE_NAME }}"
