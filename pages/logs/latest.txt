@@ -1,3 +1,3 @@
-- entry:
-  - timst: 2024-04-09T23:50:49.385440431Z
-
+LOG_PATH: "pages/logs/"
+LOG_NAME: "log_"
+LOG_TYPE: ".yml"
