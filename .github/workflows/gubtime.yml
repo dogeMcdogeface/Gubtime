@@ -13,4 +13,4 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        bash script.sh ${{ vars.URLS }}
+        bash script.sh "${{ vars.URLS }}"
