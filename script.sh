@@ -3,12 +3,6 @@
 # Accept YAML string as argument
 yaml_string=$1
 
-echo "--------------------------------------------------------------------------"
-echo "YAML String:"
-echo "--------------------------------------------------------------------------"
-echo "$yaml_string"
-echo "--------------------------------------------------------------------------"
-
 # Initialize string to hold output
 output=""
 
@@ -28,12 +22,9 @@ while IFS= read -r line; do
         output+="- alias: $alias"$'\n'
         output+="  description: $description"$'\n'
         output+="  response: $http_status"$'\n'
-        output+="  url: $url"$'\n'
+        #output+="  url: $url"$'\n'
     fi
 done <<< "$yaml_string"
 
 # Print collected output
-echo "--------------------------------------------------------------------------"
-echo "Output:"
-echo "--------------------------------------------------------------------------"
 echo "$output"
