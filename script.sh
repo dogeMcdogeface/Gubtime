@@ -8,7 +8,7 @@ output="- entry:"$'\n'
 
 # Print timestamp
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-output+="  - times: $timestamp"$'\n'
+output+="  - timst: $timestamp"$'\n'
 
 # Parse YAML string and check responses
 while IFS= read -r line; do
