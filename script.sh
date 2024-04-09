@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Accept YAML string as argument
-yaml_string="$1"
+yaml_string=$1
 
 echo "--------------------------------------------------------------------------"
 echo "YAML String:"
