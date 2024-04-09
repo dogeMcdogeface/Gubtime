@@ -1,10 +1,15 @@
 #!/bin/bash
 
+# Parse YAML content from the secret variable
+urls_yaml="$1"
+urls=$(echo "$urls_yaml" | yq eval '.urls[]' -)
+
 # Print the string passed as input
-echo "Input string: $1"
+echo "Input string: $2"
 
-# Print the secret variable
-echo "Secret variable content: $2"
-
-# Curl Google and print the return code
-curl -I -s http://www.google.com -o /dev/null -w "%{http_code}\n"
+# Loop through each URL, curl, and print the status code
+for url in $urls; do
+    echo "Curling URL: $url"
+    status_code=$(curl -I -s "$url" -o /dev/null -w "%{http_code}")
+    echo "Status code for $url: $status_code"
+done
