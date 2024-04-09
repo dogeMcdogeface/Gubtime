@@ -1,9 +1,6 @@
 name: Execute Bash Script and Check URLs
 
-on:
-  push:
-    branches:
-      - main  # Adjust the branch name as needed
+on: [push]  # Trigger the action on push events
 
 jobs:
   execute-script-and-check-urls:
