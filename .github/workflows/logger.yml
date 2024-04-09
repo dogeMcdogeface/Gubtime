@@ -34,23 +34,22 @@ jobs:
           LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${LOG_FORM}"
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
-      
-
 
       - name: Execute Script and Save Output
         id: script-output
         run: |
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
-          bash script.sh "$URLS" >> ${{ steps.calculate-log-path.outputs.LOG_FULL_PATH }}
+          bash script.sh "$URLS" >> $LOG_FULL_PATH
           
       - name: Commit Changes
         run: |
           git config --local user.email "${USER_EMAIL}"
           git config --local user.name "${USER_NAME}"
-          git add ${{ steps.calculate-log-path.outputs.LOG_FULL_PATH }}
+          git add $LOG_FULL_PATH
           git commit -m "${COMMIT_MESSAGE}"
       
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+    
