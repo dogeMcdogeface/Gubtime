@@ -32,8 +32,10 @@ jobs:
         id: calculate-log-path
         run: |
           LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${LOG_FORM}"
+          echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
-          echo "::set-output name=LOG_FULL_PATH::$LOG_FULL_PATH"
+      
+
 
       - name: Execute Script and Save Output
         id: script-output
