@@ -20,6 +20,7 @@ jobs:
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
+      START_DATE: "2024-04-10"  # Start date as an environment variable
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
       LOG_FILE: "log_"  # Calculating the unique identifier in the file name
       LOG_FORM: ".yml"  # Calculating the unique identifier in the file name
@@ -31,9 +32,10 @@ jobs:
       - name: Calculate Unified Log Path
         id: calculate-log-path
         run: |
+          START_UNIX_TIME=$(date -d "${START_DATE}" +%s)  # Get the Unix time for the start date
           CURRENT_TIME=$(date +%s)  # Get the current Unix time
-          WEEKS=$((CURRENT_TIME / (60 * 60 * 24 * 7)))  # Calculate the number of weeks
-          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${WEEKS}${LOG_FORM}"
+          SECONDS_SINCE_START=$((CURRENT_TIME - START_UNIX_TIME))  # Calculate seconds since the start date
+          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${SECONDS_SINCE_START}${LOG_FORM}"
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
       
