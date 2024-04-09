@@ -20,7 +20,8 @@ jobs:
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
-      LOG_FILE: "pages/logs/log_$(($(date +%s) / (60 * 60 * 24 * 7))).txt"  # Calculating the unique identifier in the file name
+      LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
+      LOG_FILE: "log_.yml"  # Calculating the unique identifier in the file name
 
     steps:
       - name: Checkout Repository
@@ -29,14 +30,14 @@ jobs:
       - name: Execute Script and Save Output
         id: script-output
         run: |
-          mkdir -p pages/logs  # Create a directory to store output files if it doesn't exist
-          bash script.sh "$URLS" >> $LOG_FILE
+          mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
+          bash script.sh "$URLS" >> $LOG_PATH$LOG_FILE
           
       - name: Commit Changes
         run: |
           git config --local user.email "${{ env.USER_EMAIL }}"
           git config --local user.name "${{ env.USER_NAME }}"
-          git add $LOG_FILE
+          git add $LOG_PATH$LOG_FILE
           git commit -m "${{ env.COMMIT_MESSAGE }}"
       
       - name: Push Changes
