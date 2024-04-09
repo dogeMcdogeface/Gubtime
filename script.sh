@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "The value of the first argument is: $1"
 # Define the YAML string
-yaml_string="$1"
+yaml_string=""$1""
 
 # Initialize string to hold output
 output=""
