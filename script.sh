@@ -8,7 +8,7 @@ output="- entry:"$'\n'
 
 # Print timestamp
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-output+="  - timestamp: $timestamp"$'\n'
+output+="  - times: $timestamp"$'\n'
 
 # Parse YAML string and check responses
 while IFS= read -r line; do
@@ -23,8 +23,8 @@ while IFS= read -r line; do
         end_time=$(date +%s.%N)    # Capture end time
         duration=$(echo "$end_time - $start_time" | bc)  # Calculate duration
         output+="  - alias: $alias"$'\n'
-        output+="    description: $description"$'\n'
-        output+="    response: $http_status"$'\n'
+        output+="    desc: $description"$'\n'
+        output+="    code: $http_status"$'\n'
         output+="    time: $duration"$'\n'  # Add response time to output
         #output+="  url: $url"$'\n'
     fi
