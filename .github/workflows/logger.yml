@@ -40,10 +40,11 @@ jobs:
           CURRENT_TIME=$(date +%s)
           echo "CURRENT_TIME $CURRENT_TIME"
           # Calculate the number of weeks
-          WEEKS=$(( (CURRENT_TIME - HARDCODED_TIME) / (60 * 60 * 24 * 7) ))
-          echo "WEEKS SINCE $(( (CURRENT_TIME - HARDCODED_TIME) ))"
+          LOG_WEEKS=$(( (CURRENT_TIME - HARDCODED_TIME) / (60 * 60 * 24 * 7) ))
+          echo "LOG_WEEKS SINCE $(( (CURRENT_TIME - HARDCODED_TIME) ))"
           # Construct the log file path
-          LOG_FULL_PATH="${LOG_PATH}${LOG_NAME}${WEEKS}${LOG_TYPE}"
+          echo "LOG_WEEKS=${LOG_WEEKS}" >> $GITHUB_ENV
+          LOG_FULL_PATH="${LOG_PATH}${LOG_NAME}${LOG_WEEKS}${LOG_TYPE}"
           LOG_FULL_PATH_MANIFEST="${LOG_PATH}${LOG_MANIFEST}"
           # Output the log file path
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
@@ -59,7 +60,9 @@ jobs:
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
           bash script.sh "$URLS" >> $LOG_FULL_PATH
           # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
+          echo "LOG_FULL_PATH: \"$LOG_FULL_PATH\"" > $LOG_FULL_PATH_MANIFEST
           echo "LOG_PATH: \"$LOG_PATH\"" > $LOG_FULL_PATH_MANIFEST
+          echo "LOG_NAME: \"$LOG_NAME\"" >> $LOG_FULL_PATH_MANIFEST
           echo "LOG_NAME: \"$LOG_NAME\"" >> $LOG_FULL_PATH_MANIFEST
           echo "LOG_TYPE: \"$LOG_TYPE\"" >> $LOG_FULL_PATH_MANIFEST
           
