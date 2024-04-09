@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
 
     env:
-      URLS: ${{ secrets.URLS }}
+      URLS: ${{ vars.URLS }}
 
     steps:
     - name: Checkout Repository
