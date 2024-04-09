@@ -19,9 +19,9 @@ while IFS= read -r line; do
     elif [[ "$line" =~ ^\ +description:\ (.*) ]]; then
         description="${BASH_REMATCH[1]}"
         http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
-        output+="- alias: $alias"$'\n'
-        output+="  description: $description"$'\n'
-        output+="  response: $http_status"$'\n'
+        output+="  - alias: $alias"$'\n'
+        output+="    description: $description"$'\n'
+        output+="    response: $http_status"$'\n'
         #output+="  url: $url"$'\n'
     fi
 done <<< "$yaml_string"
