@@ -15,6 +15,12 @@ yaml_string="urls:
     alias: Another Example
     description: Another example website"
 
+echo "--------------------------------------------------------------------------"
+echo "$1"
+echo "--------------------------------------------------------------------------"
+echo "$yaml_string"
+echo "--------------------------------------------------------------------------"
+
 # Initialize string to hold output
 output=""
 
