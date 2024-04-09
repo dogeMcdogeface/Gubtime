@@ -13,3 +13,18 @@
     code: 000
     time: .031861524
 
+- entry:
+  - timst: 2024-04-09T23:14:44.952325542Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .080400818
+  - alias: Example
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .065745600
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .078678281
+
