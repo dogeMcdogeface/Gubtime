@@ -1,9 +1,6 @@
 name: Concatenate Command Output to File
 
-on:
-  push:
-    branches:
-      - main  # Modify this according to your branch name
+on: [push]  # Trigger the action on push events
 
 jobs:
   concatenate-output:
