@@ -5,6 +5,8 @@ on: [push]  # Trigger the action on push events
 jobs:
   concatenate-output:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
 
     env:
       URLS: ${{ secrets.URLS }}  # Assuming you have a secret named URLS
