@@ -12,8 +12,7 @@ jobs:
       
     - name: Set up Rust
       uses: rust-build/rust-build.action@v1.4.5
-      with:
-        rust-version: '1.77.1' # You can adjust the version as per your requirements
+
 
     - name: Build and Run Script
       run: |
