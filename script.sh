@@ -15,9 +15,12 @@ yaml_string="urls:
     alias: Another Example
     description: Another example website"
 
+# Initialize string to hold output
+output=""
+
 # Print timestamp
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-echo "timestamp: $timestamp"
+output+="timestamp: $timestamp"$'\n'
 
 # Parse YAML string and check responses
 while IFS= read -r line; do
@@ -28,9 +31,11 @@ while IFS= read -r line; do
     elif [[ "$line" =~ ^\ +description:\ (.*) ]]; then
         description="${BASH_REMATCH[1]}"
         http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
-        echo "- alias: $alias"
-        echo "  description: $description"
-        #echo "  url: $url"
-        echo "  response: $http_status"
+        output+="- alias: $alias"$'\n'
+        output+="  description: $description"$'\n'
+        output+="  response: $http_status"$'\n'
     fi
 done <<< "$yaml_string"
+
+# Print collected output
+echo "$output"
