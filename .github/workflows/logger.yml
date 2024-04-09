@@ -20,10 +20,10 @@ jobs:
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
-      START_DATE: "2024-04-10"  # Start date as an environment variable
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
       LOG_FILE: "log_"  # Calculating the unique identifier in the file name
       LOG_FORM: ".yml"  # Calculating the unique identifier in the file name
+      START_DATE: "2024-04-10"  # Start date as an environment variable
 
     steps:
       - name: Checkout Repository
@@ -35,10 +35,9 @@ jobs:
           START_UNIX_TIME=$(date -d "${START_DATE}" +%s)  # Get the Unix time for the start date
           CURRENT_TIME=$(date +%s)  # Get the current Unix time
           SECONDS_SINCE_START=$((CURRENT_TIME - START_UNIX_TIME))  # Calculate seconds since the start date
-          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${SECONDS_SINCE_START}${LOG_FORM}"
+          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${START_DATE}_${SECONDS_SINCE_START}${LOG_FORM}"
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
-      
 
       - name: Execute Script and Save Output
         id: script-output
@@ -57,4 +56,3 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-    
