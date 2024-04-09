@@ -21,7 +21,7 @@ jobs:
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
-      LOG_FILE: "log_.yml"  # Calculating the unique identifier in the file name
+      LOG_FILE: "log_$(date +%s).yml"  # Calculating the unique identifier in the file name
 
     steps:
       - name: Checkout Repository
