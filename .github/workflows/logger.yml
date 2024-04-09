@@ -31,9 +31,11 @@ jobs:
       - name: Calculate Unified Log Path
         id: calculate-log-path
         run: |
-          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${LOG_FORM}"
+          CURRENT_TIME=$(date +%s)  # Get the current Unix time
+          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${CURRENT_TIME}${LOG_FORM}"
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
+      
 
       - name: Execute Script and Save Output
         id: script-output
