@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Define the YAML string
+yaml_string = ""
 yaml_string = $1
 
 # Initialize string to hold output
