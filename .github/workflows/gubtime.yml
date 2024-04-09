@@ -1,32 +1,26 @@
-name: Rust Build and Run
+name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
 
-on: [push, pull_request]
+on: [push]  # Trigger the action on push events
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  print-hello-secret-curl-websites:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
 
     steps:
-    - uses: actions/checkout@master
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Set up Rust
-      uses: rust-build/rust-build.action@v1.4.5
+    - name: Print Hello, Secret, and Curl Websites  # Step to print "Hello", secret variable, and curl websites
+      run: |
+        echo "Hello"
+        echo ${{ secrets.SECRET_VARIABLE_NAME }}  # Replace SECRET_VARIABLE_NAME with the actual name of your secret variable
+        
+        # Define YAML as a string
+        websites_yaml='
+        urls:
+          - https://example.com
+          - https://example.org
+        '
 
-
-    - name: Compile
-      id: compile
-      uses: rust-build/rust-build.action@v1.4.5
-      with:
-        RUSTTARGET: x86_64-unknown-linux-musl
-        UPLOAD_MODE: none
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Binary
-        path: |
-          ${{ steps.compile.outputs.BUILT_ARCHIVE }}
-          ${{ steps.compile.outputs.BUILT_CHECKSUM }}
-#    - name: Execute Script
-#      run: bash script.sh "hello" "${{ secrets.SECRET_VARIABLE_NAME }}"
+        # Parse YAML string and loop through each website URL
+        for url in $(echo "$websites_yaml" | yq eval '.urls[]' -); do
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" $url)
+          echo "$url returned HTTP status code: $RESPONSE"
+        done
