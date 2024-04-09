@@ -1,50 +1,20 @@
-name: Execute Bash Script and Check URLs
+name: Execute Script and Print Output
 
-on: [push]  # Trigger the action on push events
+on: [push]
 
 jobs:
-  execute-script-and-check-urls:
+  execute-script-and-print-output:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Execute Bash Script
-        run: |
-          #!/bin/bash
-          
-          # Define the YAML string
-          yaml_string="urls:
-            - Entry: 
-              url: https://example.com
-              alias: Example
-              description: Example website
-            - Entry: 
-              url: https://google.com
-              alias: Example
-              description: Example website
-            - Entry: 
-              url: https://nonexistentwebsite.noway
-              alias: Another Example
-              description: Another example website"
-          
-          # Print timestamp
-          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-          echo "timestamp: $timestamp"
-          
-          # Parse YAML string and check responses
-          while IFS= read -r line; do
-              if [[ "$line" =~ ^\ +url:\ (.*) ]]; then
-                  url="${BASH_REMATCH[1]}"
-              elif [[ "$line" =~ ^\ +alias:\ (.*) ]]; then
-                  alias="${BASH_REMATCH[1]}"
-              elif [[ "$line" =~ ^\ +description:\ (.*) ]]; then
-                  description="${BASH_REMATCH[1]}"
-                  http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
-                  echo "- alias: $alias"
-                  echo "  description: $description"
-                  #echo "  url: $url"
-                  echo "  response: $http_status"
-              fi
-          done <<< "$yaml_string"
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Execute Script and Save Output
+      id: execute-script
+      run: |
+        output=$(bash script.sh "${{ secrets.SECRET_VARIABLE_NAME }}" "hello")
+        echo "::set-output name=output::$output"
+        
+    - name: Print Output
+      run: echo "Output: ${{ steps.execute-script.outputs.output }}"
