@@ -25,7 +25,7 @@ while IFS= read -r line; do
         output+="  - alias: $alias"$'\n'
         output+="    description: $description"$'\n'
         output+="    response: $http_status"$'\n'
-        output+="    response_time: $duration seconds"$'\n'  # Add response time to output
+        output+="    time: $duration seconds"$'\n'  # Add response time to output
         #output+="  url: $url"$'\n'
     fi
 done <<< "$yaml_string"
