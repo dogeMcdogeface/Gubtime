@@ -17,6 +17,10 @@ jobs:
 
     env:
       URLS: ${{ secrets.URLS }}  # Assuming you have a secret named URLS
+      USER_EMAIL: "action@github.com"
+      USER_NAME: "GitHub Action"
+      LOG_FILE: "pages/logs/log.txt"
+      COMMIT_MESSAGE: "Add concatenated log"
 
     steps:
       - name: Checkout Repository
@@ -26,14 +30,14 @@ jobs:
         id: script-output
         run: |
           mkdir -p pages/logs  # Create a directory to store output files if it doesn't exist
-          bash script.sh "$URLS" >> pages/logs/log.txt
+          bash script.sh "$URLS" >> $LOG_FILE
           
       - name: Commit Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add pages/logs/log.txt
-          git commit -m "Add concatenated log"
+          git config --local user.email "${{ env.USER_EMAIL }}"
+          git config --local user.name "${{ env.USER_NAME }}"
+          git add $LOG_FILE
+          git commit -m "${{ env.COMMIT_MESSAGE }}"
       
       - name: Push Changes
         uses: ad-m/github-push-action@master
