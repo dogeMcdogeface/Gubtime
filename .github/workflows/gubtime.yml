@@ -2,6 +2,9 @@ name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
 
 on: [push]  # Trigger the action on push events
 
+env:
+  env_var: ${{ vars.URLS }}
+
 jobs:
   print-hello-secret-curl-websites:
     runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
@@ -13,4 +16,4 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        bash script.sh "${{ vars.URLS }}"
+        bash script.sh "$env_var"
