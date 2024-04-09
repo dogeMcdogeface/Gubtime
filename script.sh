@@ -1,1 +1,1 @@
-curl -I -w "%{http_code}" https://google.com
+curl -I http://www.example.org
