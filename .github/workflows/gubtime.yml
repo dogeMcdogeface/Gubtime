@@ -14,8 +14,4 @@ jobs:
       id: script-output
       run: |
         output=$(bash script.sh "${{ secrets.SECRET_VARIABLE_NAME }}" "hello")
-        echo "::set-output name=output::$output"
-
-    - name: Print Output
-      run: |
-        echo "${{ steps.script-output.outputs.output }}"
+        echo "$output"
