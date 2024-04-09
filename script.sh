@@ -9,10 +9,10 @@ yaml_string="urls:
   - Entry: 
     url: https://google.com
     alias: Example
-    description: Example website
+    description: Probably always up, but gonna return 30x (moved)
   - Entry: 
     url: https://nonexistentwebsite.noway
-    alias: Another Example
+    alias: Nonexistent Example
     description: Another example website"
 
 echo "--------------------------------------------------------------------------"
