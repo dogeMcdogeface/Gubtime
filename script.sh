@@ -1,19 +1,7 @@
 #!/bin/bash
 echo "The value of the first argument is: $1"
 # Define the YAML string
-yaml_string="urls:
-  - Entry: 
-    url: https://example.com
-    alias: Example
-    description: Example website
-  - Entry: 
-    url: https://google.com
-    alias: Example
-    description: Example website
-  - Entry: 
-    url: https://nonexistentwebsite.noway
-    alias: Another Example
-    description: Another example website"
+yaml_string="$1"
 
 # Initialize string to hold output
 output=""
