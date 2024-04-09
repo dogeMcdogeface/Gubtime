@@ -1,3 +1,4 @@
 LOG_PATH: "pages/logs/"
 LOG_NAME: "log_"
+LOG_NAME: "log_"
 LOG_TYPE: ".yml"
