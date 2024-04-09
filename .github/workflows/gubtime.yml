@@ -16,4 +16,4 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        bash script.sh "$env_var"
+        ./script.sh "$env_var"
