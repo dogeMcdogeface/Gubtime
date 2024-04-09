@@ -22,8 +22,9 @@ jobs:
       COMMIT_MESSAGE: "Add concatenated log"
       START_DATE: "2024-04-10"  # Start date as an environment variable
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
-      LOG_FILE: "log_"  # Calculating the unique identifier in the file name
-      LOG_FORM: ".yml"  # Calculating the unique identifier in the file name
+      LOG_NAME: "log_"  # Calculating the unique identifier in the file name
+      LOG_TYPE: ".yml"  # Calculating the unique identifier in the file name
+      LOG_MANIFEST: "latest.txt"
 
     steps:
       - name: Checkout Repository
@@ -42,10 +43,13 @@ jobs:
           WEEKS=$(( (CURRENT_TIME - HARDCODED_TIME) / (60 * 60 * 24 * 7) ))
           echo "WEEKS SINCE $(( (CURRENT_TIME - HARDCODED_TIME) ))"
           # Construct the log file path
-          LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${WEEKS}${LOG_FORM}"
+          LOG_FULL_PATH="${LOG_PATH}${LOG_NAME}${WEEKS}${LOG_TYPE}"
+          LOG_FULL_PATH_MANIFEST="${LOG_PATH}${LOG_MANIFEST}"
           # Output the log file path
           echo "LOG_FULL_PATH=${LOG_FULL_PATH}" >> $GITHUB_ENV
+          echo "LOG_FULL_PATH_MANIFEST=${LOG_FULL_PATH_MANIFEST}" >> $GITHUB_ENV
           echo "Unified Log Path: $LOG_FULL_PATH"
+          echo "Unified Log Manigest: $LOG_FULL_PATH_MANIFEST"
 
       
 
@@ -54,12 +58,14 @@ jobs:
         run: |
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
           bash script.sh "$URLS" >> $LOG_FULL_PATH
+          bash script.sh "$LOG_FULL_PATH" >> $LOG_FULL_PATH_MANIFEST
           
       - name: Commit Changes
         run: |
           git config --local user.email "${USER_EMAIL}"
           git config --local user.name "${USER_NAME}"
           git add $LOG_FULL_PATH
+          git add $LOG_FULL_PATH_MANIFEST
           git commit -m "${COMMIT_MESSAGE}"
       
       - name: Push Changes
