@@ -18,10 +18,14 @@ while IFS= read -r line; do
         alias="${BASH_REMATCH[1]}"
     elif [[ "$line" =~ ^\ +description:\ (.*) ]]; then
         description="${BASH_REMATCH[1]}"
+        start_time=$(date +%s.%N)  # Capture start time
         http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+        end_time=$(date +%s.%N)    # Capture end time
+        duration=$(echo "$end_time - $start_time" | bc)  # Calculate duration
         output+="  - alias: $alias"$'\n'
         output+="    description: $description"$'\n'
         output+="    response: $http_status"$'\n'
+        output+="    response_time: $duration seconds"$'\n'  # Add response time to output
         #output+="  url: $url"$'\n'
     fi
 done <<< "$yaml_string"
