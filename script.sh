@@ -21,6 +21,7 @@ while IFS= read -r line; do
         http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
         output+="- alias: $alias"$'\n'
         output+="  description: $description"$'\n'
+        output+="  url: $url"$'\n'
         output+="  response: $http_status"$'\n'
     fi
 done <<< "$yaml_string"
