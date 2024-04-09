@@ -1,20 +1,35 @@
-name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
+name: Concatenate Command Output to File
 
-on: [push]  # Trigger the action on push events
+on:
+  push:
+    branches:
+      - main  # Modify this according to your branch name
 
 jobs:
-  print-hello-secret-curl-websites:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+  concatenate-output:
+    runs-on: ubuntu-latest
 
     env:
-      URLS: ${{ vars.URLS }}
-
+      URLS: ${{ secrets.URLS }}  # Assuming you have a secret named URLS
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Execute Script and Save Output
+        id: script-output
+        run: |
+          mkdir -p output  # Create a directory to store output files if it doesn't exist
+          bash script.sh "$URLS" >> output/output.txt
+          
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add output/output.txt
+          git commit -m "Add concatenated output"
       
-    - name: Execute Script and Save Output
-      id: script-output
-      run: |
-        bash script.sh "$URLS"
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
