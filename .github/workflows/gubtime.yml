@@ -1,20 +1,21 @@
-name: Execute Script and Print Output
+name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
 
-on: [push]
+on: [push]  # Trigger the action on push events
 
 jobs:
-  execute-script-and-print-output:
-    runs-on: ubuntu-latest
-    
+  print-hello-secret-curl-websites:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
       
     - name: Execute Script and Save Output
-      id: execute-script
+      id: script-output
       run: |
         output=$(bash script.sh "${{ secrets.SECRET_VARIABLE_NAME }}" "hello")
         echo "::set-output name=output::$output"
-        
+
     - name: Print Output
-      run: echo "Output: ${{ steps.execute-script.outputs.output }}"
+      run: |
+        echo "${{ steps.script-output.outputs.output }}"
