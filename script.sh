@@ -1,5 +1,2 @@
-  if ! curl -s www.google.com -o /dev/null; then
-    echo "Failed to reach target "
-    else
-    echo "sssss"
-    fi
+http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+echo "HTTP status code: $http_status "
