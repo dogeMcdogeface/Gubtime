@@ -32,10 +32,8 @@ jobs:
       - name: Calculate Unified Log Path
         id: calculate-log-path
         run: |
-          # Hardcoded date
-          HARDCODED_DATE="2024-04-10"
           # Convert the hardcoded date to Unix time
-          HARDCODED_TIME=$(date -d "$HARDCODED_DATE" +%s)
+          HARDCODED_TIME=$(date -d "$START_DATE" +%s)
           echo "HARDCODED_TIME $HARDCODED_TIME"
           # Get the current Unix time
           CURRENT_TIME=$(date +%s)
