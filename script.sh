@@ -7,6 +7,10 @@ yaml_string="urls:
     alias: Example
     description: Example website
   - Entry: 
+    url: https://google.com
+    alias: Example
+    description: Example website
+  - Entry: 
     url: https://nonexistentwebsite.noway
     alias: Another Example
     description: Another example website"
