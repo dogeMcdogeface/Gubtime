@@ -19,8 +19,8 @@ jobs:
       URLS: ${{ secrets.URLS }}  # Assuming you have a secret named URLS
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
-      LOG_FILE: "pages/logs/log.txt"
       COMMIT_MESSAGE: "Add concatenated log"
+      LOG_FILE: "pages/logs/log_$(($(date +%s) / (60 * 60 * 24 * 7))).txt"  # Calculating the unique identifier in the file name
 
     steps:
       - name: Checkout Repository
