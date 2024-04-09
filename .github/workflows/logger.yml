@@ -40,7 +40,7 @@ jobs:
           echo "CURRENT_TIME $CURRENT_TIME"
           # Calculate the number of weeks
           WEEKS=$(( (CURRENT_TIME - HARDCODED_TIME) / (60 * 60 * 24 * 7) ))
-          echo "WEEKS2 $(( (CURRENT_TIME - HARDCODED_TIME) ))"
+          echo "WEEKS SINCE $(( (CURRENT_TIME - HARDCODED_TIME) ))"
           # Construct the log file path
           LOG_FULL_PATH="${LOG_PATH}${LOG_FILE}${WEEKS}${LOG_FORM}"
           # Output the log file path
