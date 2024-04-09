@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
 
     env:
-      URLS: ${{ vars.URLS }}
+      URLS: ${{ secrets.URLS }}
 
 
     steps:
