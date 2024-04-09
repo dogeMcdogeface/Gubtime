@@ -7,16 +7,8 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
 
     steps:
-    - name: Print Hello, Secret, and Curl Websites  # Step to print "Hello", secret variable, and curl websites
-      run: |
-        echo "Hello"
-        echo ${{ secrets.SECRET_VARIABLE_NAME }}  # Replace SECRET_VARIABLE_NAME with the actual name of your secret variable
-        
-        # Extract the YAML string from the secret variable
-        websites_yaml=$(echo "${{ secrets.YAML_SECRET_VARIABLE }}" | base64 --decode)
-
-        # Parse YAML string and loop through each website URL
-        for url in $(echo "$websites_yaml" | yq eval '.urls[]' -); do
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" $url)
-          echo "$url returned HTTP status code: $RESPONSE"
-        done
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Execute Script
+      run: bash script.sh "hello"
