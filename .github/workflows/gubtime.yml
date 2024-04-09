@@ -11,4 +11,4 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Execute Script
-      run: bash script.sh "hello"
+      run: bash script.sh "hello" "${{ secrets.SECRET_VARIABLE_NAME }}"
