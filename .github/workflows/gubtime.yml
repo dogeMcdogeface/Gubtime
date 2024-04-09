@@ -13,17 +13,5 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        output=$(bash script.sh "urls:
-          - Entry: 
-            url: https://example.com
-            alias: Example
-            description: Example website
-          - Entry: 
-            url: https://google.com
-            alias: Example
-            description: Probably always up, but gonna return 30x (moved)
-          - Entry: 
-            url: https://nonexistentwebsite.noway
-            alias: Nonexistent Example
-            description: Another example website" "hello")
+        output=$(bash script.sh $vars.URLS "hello")
         echo "$output"
