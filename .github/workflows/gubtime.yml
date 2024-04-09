@@ -1,0 +1,19 @@
+name: Print Hello and Curl Google  # Name of the GitHub Action
+
+on: [push]  # Trigger the action on push events
+
+jobs:
+  print-hello-curl-google:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+
+    steps:
+    - name: Print Hello  # Step to print "Hello"
+      run: echo "Hello"
+
+    - name: Print Secret Variable  # Step to print a secret variable
+      run: echo ${{ secrets.SECRET_VARIABLE_NAME }}  # Replace SECRET_VARIABLE_NAME with the actual name of your secret variable
+
+    - name: Curl Google and Print Result  # Step to curl Google and print the resulting code
+      run: |
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://www.google.com)
+        echo "Google returned HTTP status code: $RESPONSE"
