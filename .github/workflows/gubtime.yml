@@ -23,7 +23,7 @@ jobs:
         id: script-output
         run: |
           mkdir -p pages/logs  # Create a directory to store output files if it doesn't exist
-          bash script.sh "$URLS" >> output/output.txt
+          bash script.sh "$URLS" >> pages/logs/output.txt
           
       - name: Commit Changes
         run: |
