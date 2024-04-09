@@ -58,11 +58,10 @@ jobs:
         run: |
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
           bash script.sh "$URLS" >> $LOG_FULL_PATH
-          bash {
-            echo "LOG_PATH: \"$LOG_PATH\"  # Calculating the unique identifier in the file name"
-              echo "LOG_NAME: \"$LOG_NAME\"  # Calculating the unique identifier in the file name"
-              echo "LOG_TYPE: \"$LOG_TYPE\"  # Calculating the unique identifier in the file name"
-            } >> "$LOG_FULL_PATH_MANIFEST"
+          # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
+          echo "LOG_PATH: \"$LOG_PATH\"" > $LOG_FULL_PATH_MANIFEST
+          echo "LOG_NAME: \"$LOG_NAME\"" >> $LOG_FULL_PATH_MANIFEST
+          echo "LOG_TYPE: \"$LOG_TYPE\"" >> $LOG_FULL_PATH_MANIFEST
           
       - name: Commit Changes
         run: |
