@@ -18,7 +18,7 @@ output+="timestamp: $timestamp"$'\n'
 
 # Parse YAML string and check responses
 while IFS= read -r line; do
-    if [[ "$line" =~ ^\ +url:\ +(.*) ]]; then
+    if [[ "$line" =~ ^\ +url:\ +([^[:space:]]*) ]]; then
         url="${BASH_REMATCH[1]}"
     elif [[ "$line" =~ ^\ +alias:\ (.*) ]]; then
         alias="${BASH_REMATCH[1]}"
