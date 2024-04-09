@@ -2,8 +2,7 @@ name: Print Hello, Secret, and Curl Websites  # Name of the GitHub Action
 
 on: [push]  # Trigger the action on push events
 
-env:
-  env_var: ${{ vars.URLS }}
+
 
 jobs:
   print-hello-secret-curl-websites:
@@ -18,4 +17,4 @@ jobs:
       run: |
         MULTILINE=$(echo ${{ vars.URLS }})
         echo "${MULTILINE}"
-        bash script.sh "$env_var"
+        bash script.sh "${{ vars.URLS }}"
