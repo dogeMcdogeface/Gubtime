@@ -29,5 +29,5 @@ jobs:
     - name: Execute Script and Save Output
       id: script-output
       run: |
-        output=$(bash script.sh "$urls" "hello")
+        output=$(bash script.sh ${{ vars.URLS }} "hello")
         echo "$output"
