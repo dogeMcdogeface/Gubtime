@@ -4,11 +4,11 @@
 yaml_string=$1
 
 # Initialize string to hold output
-output=""
+output="- entry:"$'\n'
 
 # Print timestamp
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-output+="timestamp: $timestamp"$'\n'
+output+="  - timestamp: $timestamp"$'\n'
 
 # Parse YAML string and check responses
 while IFS= read -r line; do
