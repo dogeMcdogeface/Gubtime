@@ -1,9 +1,13 @@
+#!/bin/bash
+
 # Define the YAML string
 yaml_string="urls:
-  - url: https://example.com
+  - Entry: 
+    url: https://example.com
     alias: Example
     description: Example website
-  - url: https://nonexistentwebsite.noway
+  - Entry: 
+    url: https://nonexistentwebsite.noway
     alias: Another Example
     description: Another example website"
 
@@ -19,9 +23,10 @@ while IFS= read -r line; do
         alias="${BASH_REMATCH[1]}"
     elif [[ "$line" =~ ^\ +description:\ (.*) ]]; then
         description="${BASH_REMATCH[1]}"
-        http_status=$(curl -s -o /dev/null -w "%{http_code}" http://www.example.org/)
+        http_status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
         echo "- alias: $alias"
         echo "  description: $description"
+        #echo "  url: $url"
         echo "  response: $http_status"
     fi
 done <<< "$yaml_string"
