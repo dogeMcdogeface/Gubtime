@@ -24,7 +24,7 @@ jobs:
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
-      START_DATE: "2024-04-10"  # Start date as an environment variable
+      START_DATE: "2024-04-2"  # Start date as an environment variable
       LOG_PATH: "pages/logs/"  # Calculating the unique identifier in the file name
       LOG_NAME: "log_"  # Calculating the unique identifier in the file name
       LOG_TYPE: ".yml"  # Calculating the unique identifier in the file name
