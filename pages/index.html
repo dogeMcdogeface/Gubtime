@@ -1,2 +1,137 @@
-hello :) 
-):
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hello</title>
+    </head>
+    <body>
+        <table id="logsTable">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Alias</th>
+                    <th>Description</th>
+                    <th>Code</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+        <script>
+            // Async function to fetch data from URL
+            async function fetchData(url) {
+                try {
+                    const response = await fetch(url);
+                    const data = await response.text();
+                    return data;
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    return null;
+                }
+            }
+
+            // Function to display fetched data as table
+            async function displayLogsTable() {
+                const logsTableBody = document.querySelector("#logsTable tbody");
+                const url = "https://raw.githubusercontent.com/dogeMcdogeface/Gubtime/master/pages/logs/log_0.yml";
+
+                // Fetch data asynchronously
+                const yamlData = await fetchData(url);
+
+                if (yamlData) {
+                    // Parse YAML data
+                    const logsData = jsyaml.load(yamlData);
+                    console.log(logsData);
+                    // Clear table body
+                    logsTableBody.innerHTML = "";
+
+                    // Populate table with YAML data
+                    logsData.forEach((entry) => {
+                        const timestamp = entry.entry[0].timst;
+                        console.log(timestamp);
+
+                        const row = document.createElement("tr");
+						row.style.borderTop = "2px solid black";
+                        const cell = document.createElement("td");
+                        cell.textContent = timestamp;
+                        cell.classList.add("timestamp");
+                        cell.setAttribute("rowspan", entry.entry.length);
+                        row.appendChild(cell);
+                        row.appendChild(cell);
+                        logsTableBody.appendChild(row);
+
+                        entry.entry.slice(1).forEach((item) => {
+                            const row = document.createElement("tr");
+
+                            console.log(item);
+
+                            for (var field in item) {
+                                if (Object.prototype.hasOwnProperty.call(item, field)) {
+                                    console.log(field, item[field]);
+
+                                    const cell = document.createElement("td");
+
+                                    cell.textContent = item[field];
+                                    cell.classList.add(field);
+
+                                    row.appendChild(cell);
+                                }
+                            }
+                            logsTableBody.appendChild(row);
+                        });
+                    });
+                } else {
+                    // Display error message if data fetching fails
+                    logsTableBody.innerHTML = '<tr><td colspan="5">Failed to fetch data.</td></tr>';
+                }
+            }
+
+            // Call the function to display logs table when the page loads
+            displayLogsTable();
+        </script>
+    </body>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* CSS formatting for specific classes */
+        .timst {
+            /* Format as dates */
+            /* Add your date formatting CSS here */
+        }
+
+        .alias {
+            /* Bold text */
+            font-weight: bold;
+        }
+
+        .desc {
+            /* Cursive */
+            font-style: italic;
+        }
+
+        .code {
+            /* Mono */
+            font-family: monospace;
+        }
+
+        .time {
+            /* Format as milliseconds */
+            /* Add your millisecond formatting CSS here */
+        }
+    </style>
+</html>
