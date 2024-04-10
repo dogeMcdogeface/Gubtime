@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hello</title>
+        <title>Gubtime</title>
     </head>
     <body>
         <table id="logsTable">
@@ -77,6 +77,10 @@
                                     cell.classList.add(field);
 
                                     row.appendChild(cell);
+									
+									if(field === "code"){
+									    row.classList.add("http-error-"+item[field]);
+									}
                                 }
                             }
                             logsTableBody.appendChild(row);
@@ -133,5 +137,25 @@
             /* Format as milliseconds */
             /* Add your millisecond formatting CSS here */
         }
+		
+		    .http-error-0 {
+        background-color: #f8d7da; /* Light red for HTTP 0 */
+    }
+
+        [class^="http-error-2"],
+    [class*=" http-error-2"] {
+        background-color: #e6f7f0; /* Light blue for HTTP 200 */
+    }
+
+        [class^="http-error-4"],
+    [class*=" http-error-4"] {
+        background-color: #f6f7e6; /* Light red for HTTP 400s */
+    }
+
+        [class^="http-error-3"],
+    [class*=" http-error-3"]  {
+        background-color: #f6f7e6; /* Light yellow for HTTP 300s */
+    }
+
     </style>
 </html>
