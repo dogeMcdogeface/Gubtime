@@ -107,3 +107,22 @@
     code: 000
     time: .125009606
 
+- entry:
+  - timst: 2024-04-10T01:39:48.074362972Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .137563073
+  - alias: Bestest
+    desc: Probably always DOWN
+    code: 200
+    time: .598193856
+  - alias: Example
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .085853284
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .038860347
+
