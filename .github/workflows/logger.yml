@@ -65,10 +65,15 @@ jobs:
           bash script.sh "$URLS" >> $LOG_FULL_PATH
           # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
           echo "LOG_FULL_PATH: \"$LOG_FULL_PATH\"" > $LOG_FULL_PATH_MANIFEST
+          echo "ok1"
           echo "LOG_PATH: \"$LOG_PATH\"" >> $LOG_FULL_PATH_MANIFEST
+          echo "ok2"
           echo "LOG_NAME: \"$LOG_NAME\"" >> $LOG_FULL_PATH_MANIFEST
+          echo "ok3"
           echo "LOG_WEEK: \"$LOG_WEEK\"" >> $LOG_FULL_PATH_MANIFEST
+          echo "ok4"
           echo "LOG_TYPE: \"$LOG_TYPE\"" >> $LOG_FULL_PATH_MANIFEST
+          echo "ok5"
           
       - name: Commit Changes
         run: |
