@@ -61,9 +61,12 @@ jobs:
       - name: Execute Script and Save Output
         id: script-output
         run: |
+          echo "ok-5"
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
+          echo "ok-4"
           bash script.sh "$URLS" >> $LOG_FULL_PATH
           # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
+          echo "ok-3"
           echo "LOG_FULL_PATH: \"$LOG_FULL_PATH\"" > $LOG_FULL_PATH_MANIFEST
           echo "ok1"
           echo "LOG_PATH: \"$LOG_PATH\"" >> $LOG_FULL_PATH_MANIFEST
