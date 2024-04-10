@@ -221,3 +221,22 @@
     code: 000
     time: .131177835
 
+- entry:
+  - timst: 2024-04-10T07:07:12.504031546Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .062388723
+  - alias: Bestest
+    desc: Probably always DOWN
+    code: 200
+    time: .472134681
+  - alias: Example
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .087293788
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .027283300
+
