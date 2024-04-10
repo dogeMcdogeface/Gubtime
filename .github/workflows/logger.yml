@@ -20,7 +20,7 @@ jobs:
       contents: write
 
     env:
-      URLS: ${{ secrets.URLS }}  # Assuming you have a secret named URLS
+      URLS: ${{ vars.URLS }}  # Assuming you have a secret named URLS
       USER_EMAIL: "action@github.com"
       USER_NAME: "GitHub Action"
       COMMIT_MESSAGE: "Add concatenated log"
