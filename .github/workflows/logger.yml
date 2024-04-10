@@ -64,6 +64,7 @@ jobs:
           echo "ok-5"
           mkdir -p $LOG_PATH  # Create a directory to store output files if it doesn't exist
           echo "ok-4"
+          echo "ok-4"
           bash script.sh "$URLS" >> $LOG_FULL_PATH
           # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
           echo "ok-3"
