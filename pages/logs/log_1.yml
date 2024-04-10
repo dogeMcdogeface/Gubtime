@@ -987,3 +987,26 @@
     code: 000
     time: .075074008
 
+- entry:
+  - timst: 2024-04-10T20:50:56.557128772Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .048143730
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .051576004
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .145944605
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .448483271
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .086592577
+
