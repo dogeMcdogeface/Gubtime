@@ -1,5 +1,5 @@
-LOG_FULL_PATH: "pages/logs/log_0.yml"
+LOG_FULL_PATH: "pages/logs/log_1.yml"
 LOG_PATH: "pages/logs/"
 LOG_NAME: "log_"
-LOG_WEEK: "0"
+LOG_WEEK: "1"
 LOG_TYPE: ".yml"
