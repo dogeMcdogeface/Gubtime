@@ -1,5 +1,6 @@
 LOG_FULL_PATH: "pages/logs/log_1.yml"
 LOG_REPO: "dogeMcdogeface/Gubtime"
+LOG_BRNC: "master"
 LOG_PATH: "pages/logs/"
 LOG_NAME: "log_"
 LOG_WEEK: "1"
