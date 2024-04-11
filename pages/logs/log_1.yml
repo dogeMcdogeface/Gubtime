@@ -3885,3 +3885,26 @@
     code: 000
     time: .027659365
 
+- entry:
+  - timst: 2024-04-11T21:30:46.602141094Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .046855737
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .221387275
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .155415247
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .516738365
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .122662554
+
