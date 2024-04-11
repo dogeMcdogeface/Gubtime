@@ -5,8 +5,16 @@ urls:
     description: Example website
   - Entry: 
     url: https://google.com
-    alias: Example
+    alias: Google300
     description: Probably always up, but gonna return 30x (moved)
+  - Entry: 
+    url: https://google.com/noluck
+    alias: Google400
+    description: Probably always up, but gonna return 40x (notfound)
+  - Entry: 
+    url: https://yoursite.net
+    alias: Best Website
+    description: Probably always DOWN
   - Entry: 
     url: https://nonexistentwebsite.noway
     alias: Nonexistent Example
