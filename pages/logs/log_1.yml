@@ -3931,3 +3931,26 @@
     code: 000
     time: .026338223
 
+- entry:
+  - timst: 2024-04-11T21:50:31.729578999Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .059284194
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .097469732
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .154079745
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .601032150
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .062049423
+
