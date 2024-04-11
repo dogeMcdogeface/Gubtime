@@ -3241,3 +3241,26 @@
     code: 000
     time: .120387898
 
+- entry:
+  - timst: 2024-04-11T16:40:47.803748966Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .086912708
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .240308973
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .156006538
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .404942009
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .029662732
+
