@@ -65,6 +65,7 @@ jobs:
           bash script.sh "$URLS" >> $LOG_FULL_PATH
           # Print variables as YAML into LOG_FULL_PATH_MANIFEST file
           echo "LOG_FULL_PATH: \"$LOG_FULL_PATH\"" > $LOG_FULL_PATH_MANIFEST
+          echo "LOG_REPO: \"${{ github.repository }}\"" >> $LOG_FULL_PATH_MANIFEST
           echo "LOG_PATH: \"$LOG_PATH\"" >> $LOG_FULL_PATH_MANIFEST
           echo "LOG_NAME: \"$LOG_NAME\"" >> $LOG_FULL_PATH_MANIFEST
           echo "LOG_WEEK: \"$LOG_WEEK\"" >> $LOG_FULL_PATH_MANIFEST
