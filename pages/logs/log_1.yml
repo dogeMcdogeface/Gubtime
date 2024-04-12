@@ -6001,3 +6001,26 @@
     code: 000
     time: .111556577
 
+- entry:
+  - timst: 2024-04-12T17:20:05.317241175Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .062982232
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .090030537
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .175281415
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .616338119
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .139570059
+
