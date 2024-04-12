@@ -6576,3 +6576,26 @@
     code: 000
     time: .143754214
 
+- entry:
+  - timst: 2024-04-12T21:30:54.863671886Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .064572507
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .154572923
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .156482091
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .473891542
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .086287061
+
