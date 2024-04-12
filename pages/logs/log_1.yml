@@ -6116,3 +6116,26 @@
     code: 000
     time: .104816430
 
+- entry:
+  - timst: 2024-04-12T18:02:07.150853218Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .168971272
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .084396519
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .176756717
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .556024769
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .046401934
+
