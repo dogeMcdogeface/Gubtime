@@ -8186,3 +8186,26 @@
     code: 000
     time: .126123735
 
+- entry:
+  - timst: 2024-04-13T10:40:38.349878757Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .048376011
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .085394144
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .151627097
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .507420370
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .026640521
+
