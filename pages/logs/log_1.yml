@@ -8991,3 +8991,26 @@
     code: 000
     time: .119107182
 
+- entry:
+  - timst: 2024-04-13T17:01:11.196312045Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .088011537
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .103719154
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .157137082
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .496030336
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .125287938
+
