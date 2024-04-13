@@ -8439,3 +8439,26 @@
     code: 000
     time: .337428070
 
+- entry:
+  - timst: 2024-04-13T12:50:43.601804113Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .150198891
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .092209250
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .171446706
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .638956274
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .032999961
+
