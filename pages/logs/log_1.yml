@@ -8071,3 +8071,26 @@
     code: 000
     time: .065240361
 
+- entry:
+  - timst: 2024-04-13T09:50:45.301361921Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .113166569
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .082805941
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .171624116
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .618159512
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .215042349
+
