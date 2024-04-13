@@ -8485,3 +8485,26 @@
     code: 000
     time: .131397640
 
+- entry:
+  - timst: 2024-04-13T13:18:03.772919834Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .057770020
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .078628184
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .144535742
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .381784583
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .099071034
+
