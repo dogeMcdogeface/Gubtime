@@ -9888,3 +9888,26 @@
     code: 000
     time: .022594065
 
+- entry:
+  - timst: 2024-04-13T23:41:25.345523337Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .076046814
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .063402523
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .142872509
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .397961443
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .295918187
+
