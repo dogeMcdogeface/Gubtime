@@ -8531,3 +8531,26 @@
     code: 000
     time: .024018982
 
+- entry:
+  - timst: 2024-04-13T13:30:41.759136596Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .066872547
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .069010380
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .151140234
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .637814230
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .040275227
+
