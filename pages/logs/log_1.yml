@@ -8830,3 +8830,26 @@
     code: 000
     time: .023681532
 
+- entry:
+  - timst: 2024-04-13T15:40:31.691676863Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .050377842
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .058294454
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .147662053
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .421464641
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .082539006
+
