@@ -8715,3 +8715,26 @@
     code: 000
     time: .107175109
 
+- entry:
+  - timst: 2024-04-13T14:50:51.247492678Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .079496155
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .066325713
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .152386347
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .507706267
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .032045647
+
