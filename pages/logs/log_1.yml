@@ -9198,3 +9198,26 @@
     code: 000
     time: .035580063
 
+- entry:
+  - timst: 2024-04-13T18:31:01.261858426Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .070185458
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .066057738
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .146504721
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .438624595
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .188780258
+
