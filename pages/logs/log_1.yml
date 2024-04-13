@@ -7611,3 +7611,26 @@
     code: 000
     time: .124988842
 
+- entry:
+  - timst: 2024-04-13T06:30:53.921926466Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .086353160
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .068375259
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .154620540
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .466973819
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .127904675
+
