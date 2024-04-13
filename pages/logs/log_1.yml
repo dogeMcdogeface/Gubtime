@@ -8301,3 +8301,26 @@
     code: 000
     time: .099119421
 
+- entry:
+  - timst: 2024-04-13T11:30:47.248789486Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .052966618
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .067823206
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .152951802
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .600895638
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .041106535
+
