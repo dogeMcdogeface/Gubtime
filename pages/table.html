@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gubtime</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
     </head>
     <body>
         <table id="logsTable">
@@ -18,144 +20,55 @@
             </thead>
             <tbody></tbody>
         </table>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+        <script src="script.js"></script>
         <script>
-            // Async function to fetch data from URL
-            async function fetchData(url) {
-                try {
-                    const response = await fetch(url);
-                    const data = await response.text();
-                    return data;
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                    return null;
-                }
-            }
-
             // Function to display fetched data as table
-            async function displayLogsTable() {
+            function displayLogsTable(logsData) {
                 const logsTableBody = document.querySelector("#logsTable tbody");
-                const url = "https://raw.githubusercontent.com/dogeMcdogeface/Gubtime/master/pages/logs/log_0.yml";
 
-                // Fetch data asynchronously
-                const yamlData = await fetchData(url);
+                // Clear table body
+                logsTableBody.innerHTML = "";
 
-                if (yamlData) {
-                    // Parse YAML data
-                    const logsData = jsyaml.load(yamlData);
-                    console.log(logsData);
-                    // Clear table body
-                    logsTableBody.innerHTML = "";
+                // Populate table with YAML data
+                logsData.forEach((entry) => {
+                    const timestamp = entry.entry[0].timst;
 
-                    // Populate table with YAML data
-                    logsData.forEach((entry) => {
-                        const timestamp = entry.entry[0].timst;
-                        console.log(timestamp);
+                    const row = document.createElement("tr");
+                    row.style.borderTop = "2px solid black";
+                    const cell = document.createElement("td");
+                    cell.textContent = timestamp;
+                    cell.classList.add("timestamp");
+                    cell.setAttribute("rowspan", entry.entry.length);
+                    row.appendChild(cell);
+                    row.appendChild(cell);
+                    logsTableBody.appendChild(row);
 
+                    entry.entry.slice(1).forEach((item) => {
                         const row = document.createElement("tr");
-						row.style.borderTop = "2px solid black";
-                        const cell = document.createElement("td");
-                        cell.textContent = timestamp;
-                        cell.classList.add("timestamp");
-                        cell.setAttribute("rowspan", entry.entry.length);
-                        row.appendChild(cell);
-                        row.appendChild(cell);
-                        logsTableBody.appendChild(row);
 
-                        entry.entry.slice(1).forEach((item) => {
-                            const row = document.createElement("tr");
+                        for (var field in item) {
+                            if (Object.prototype.hasOwnProperty.call(item, field)) {
+                                const cell = document.createElement("td");
 
-                            console.log(item);
+                                cell.textContent = item[field];
+                                cell.classList.add(field);
 
-                            for (var field in item) {
-                                if (Object.prototype.hasOwnProperty.call(item, field)) {
-                                    console.log(field, item[field]);
+                                row.appendChild(cell);
 
-                                    const cell = document.createElement("td");
-
-                                    cell.textContent = item[field];
-                                    cell.classList.add(field);
-
-                                    row.appendChild(cell);
-									
-									if(field === "code"){
-									    row.classList.add("http-error-"+item[field]);
-									}
+                                if (field === "code") {
+                                    row.classList.add("http-error-" + item[field]);
                                 }
                             }
-                            logsTableBody.appendChild(row);
-                        });
+                        }
+                        logsTableBody.appendChild(row);
                     });
-                } else {
-                    // Display error message if data fetching fails
-                    logsTableBody.innerHTML = '<tr><td colspan="5">Failed to fetch data.</td></tr>';
-                }
+                });
             }
 
-            // Call the function to display logs table when the page loads
-            displayLogsTable();
+            // Listen for the custom event 'dataLoaded' and call displayLogsTable() when triggered
+            document.addEventListener("dataLoaded", function (event) {
+                displayLogsTable(event.detail);
+            });
         </script>
     </body>
-
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th,
-        td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-        /* CSS formatting for specific classes */
-        .timst {
-            /* Format as dates */
-            /* Add your date formatting CSS here */
-        }
-
-        .alias {
-            /* Bold text */
-            font-weight: bold;
-        }
-
-        .desc {
-            /* Cursive */
-            font-style: italic;
-        }
-
-        .code {
-            /* Mono */
-            font-family: monospace;
-        }
-
-        .time {
-            /* Format as milliseconds */
-            /* Add your millisecond formatting CSS here */
-        }
-		
-		    .http-error-0 {
-        background-color: #f8d7da; /* Light red for HTTP 0 */
-    }
-
-        [class^="http-error-2"],
-    [class*=" http-error-2"] {
-        background-color: #e6f7f0; /* Light blue for HTTP 200 */
-    }
-
-        [class^="http-error-4"],
-    [class*=" http-error-4"] {
-        background-color: #f6f7e6; /* Light red for HTTP 400s */
-    }
-
-        [class^="http-error-3"],
-    [class*=" http-error-3"]  {
-        background-color: #f6f7e6; /* Light yellow for HTTP 300s */
-    }
-
-    </style>
 </html>
