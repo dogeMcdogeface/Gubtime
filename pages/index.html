@@ -4,158 +4,88 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gubtime</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
     </head>
     <body>
-        <table id="logsTable">
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Alias</th>
-                    <th>Description</th>
-                    <th>Code</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+        <div id="graphs"></div>
+        <script src="script.js"></script>
         <script>
-            // Async function to fetch data from URL
-            async function fetchData(url) {
-                try {
-                    const response = await fetch(url);
-                    const data = await response.text();
-                    return data;
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                    return null;
-                }
-            }
-
-            // Function to display fetched data as table
-            async function displayLogsTable() {
-                const logsTableBody = document.querySelector("#logsTable tbody");
-                const url = "https://raw.githubusercontent.com/dogeMcdogeface/Gubtime/master/pages/logs/log_0.yml";
-
-                // Fetch data asynchronously
-                const yamlData = await fetchData(url);
-
-                if (yamlData) {
-                    // Parse YAML data
-                    const logsData = jsyaml.load(yamlData);
-                    console.log(logsData);
-                    // Clear table body
-                    logsTableBody.innerHTML = "";
-
-                    // Populate table with YAML data
-                    logsData.forEach((entry) => {
-                        const timestamp = entry.entry[0].timst;
-                        console.log(timestamp);
-
-                        const row = document.createElement("tr");
-						row.style.borderTop = "2px solid black";
-                        const cell = document.createElement("td");
-                        cell.textContent = timestamp;
-                        cell.classList.add("timestamp");
-                        cell.setAttribute("rowspan", entry.entry.length);
-                        row.appendChild(cell);
-                        row.appendChild(cell);
-                        logsTableBody.appendChild(row);
-
-                        entry.entry.slice(1).forEach((item) => {
-                            const row = document.createElement("tr");
-
-                            console.log(item);
-
-                            for (var field in item) {
-                                if (Object.prototype.hasOwnProperty.call(item, field)) {
-                                    console.log(field, item[field]);
-
-                                    const cell = document.createElement("td");
-
-                                    cell.textContent = item[field];
-                                    cell.classList.add(field);
-
-                                    row.appendChild(cell);
-									
-									if(field === "code"){
-									    row.classList.add("http-error-"+item[field]);
-									}
-                                }
-                            }
-                            logsTableBody.appendChild(row);
-                        });
+            function displayLogsTable(logsData) {
+                const traces = {};
+                logsData.forEach((entry) => {
+                    const timestamp = entry.entry[0].timst;
+                    entry.entry.slice(1).forEach((site) => {
+                        traces[site.alias] ??= { desc: site.desc, x: [], y: [], z: [] };
+                        traces[site.alias].x.push(timestamp);
+                        traces[site.alias].y.push(site.time);
+                        traces[site.alias].z.push(site.code);
                     });
-                } else {
-                    // Display error message if data fetching fails
-                    logsTableBody.innerHTML = '<tr><td colspan="5">Failed to fetch data.</td></tr>';
-                }
+                });
+
+                Object.keys(traces).forEach((key, num) => {
+                    let div = document.getElementById(`div-${key}`) || document.createElement("div");
+                    div.id = `div-${key}`;
+                    div.innerHTML = `<h3>${key}</h3><p>Description: ${traces[key].desc}</p>`;
+                    let div_graph = div.appendChild(document.createElement("div"));
+                    div_graph.id = `div-${key}-graph`;
+                    document.getElementById("graphs").appendChild(div);
+
+                    const rangeBegin = +1;
+                    const rangeEnd = -1.5;
+                    const currentDate = new Date();
+                    const currentDayStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0, 0);
+
+                    var layout = {
+                        margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 }, // Margins first for clear separation
+                        yaxis: {
+                            title: "Response Time (s)", // Title first
+                            type: "log", // Then type
+                            range: [-2, 0.8],
+                            automargin: true,
+                            fixedrange: true,
+                            dtick: "D2",
+                            tickformat: ".1g",
+                        },
+                        xaxis: {
+                            type: "date", // Type placed consistently at the top
+                            rangeslider: {
+                                visible: true,
+                                range: [traces[key].x[0], traces[key].x.slice(-1)],
+                            },
+                            range: [Date.parse(traces[key].x.slice(-1)) + rangeBegin * 60 * 60 * 1000, Date.parse(traces[key].x.slice(-1)) + rangeEnd * 24 * 60 * 60 * 1000],
+                            tickmode: "auto",
+                            nticks: 24,
+                            tickformatstops: [
+                                { dtickrange: [null, 1000], value: "%H:%M:%S.%Lms\n%e %b %y" },
+                                { dtickrange: [1000, 60000], value: "%H:%M:%S\n%e %b %y" },
+                                { dtickrange: [null, 600000], value: "%H:%M\n%e %b %y" },
+                                { dtickrange: [600000, 43200000], value: "%H:%M\n%e %b %y" },
+                                { dtickrange: [43200000, "M1"], value: "%e. %b\n'%y" },
+                                { dtickrange: ["M1", "M12"], value: "%b '%y" },
+                                { dtickrange: ["M12", null], value: "%Y Y" },
+                            ],
+                            ticklabelmode: "period",
+                            ticks: "inside",
+                            minor: {
+                                tick0: currentDayStart,
+                                ticks: "outside",
+                                tickwidth: 3,
+                                gridwidth: 5,
+                                showgrid: true,
+                                ticklen: 40,
+                                dtick: 86400000.0,
+                                tickcolor: "#eee",
+                                gridcolor: "#eee",
+                            },
+                        },
+                    };
+                    Plotly.newPlot(`div-${key}-graph`, [{ x: traces[key].x, y: traces[key].y }], layout);
+                });
             }
 
-            // Call the function to display logs table when the page loads
-            displayLogsTable();
+            document.addEventListener("dataLoaded", (event) => displayLogsTable(event.detail));
         </script>
     </body>
-
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th,
-        td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-        /* CSS formatting for specific classes */
-        .timst {
-            /* Format as dates */
-            /* Add your date formatting CSS here */
-        }
-
-        .alias {
-            /* Bold text */
-            font-weight: bold;
-        }
-
-        .desc {
-            /* Cursive */
-            font-style: italic;
-        }
-
-        .code {
-            /* Mono */
-            font-family: monospace;
-        }
-
-        .time {
-            /* Format as milliseconds */
-            /* Add your millisecond formatting CSS here */
-        }
-		
-		    .http-error-0 {
-        background-color: #f8d7da; /* Light red for HTTP 0 */
-    }
-
-        [class^="http-error-2"],
-    [class*=" http-error-2"] {
-        background-color: #e6f7f0; /* Light blue for HTTP 200 */
-    }
-
-        [class^="http-error-4"],
-    [class*=" http-error-4"] {
-        background-color: #f6f7e6; /* Light red for HTTP 400s */
-    }
-
-        [class^="http-error-3"],
-    [class*=" http-error-3"]  {
-        background-color: #f6f7e6; /* Light yellow for HTTP 300s */
-    }
-
-    </style>
 </html>
