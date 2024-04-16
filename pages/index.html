@@ -31,6 +31,7 @@
         const layoutTemplate = {
             margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 },
             showlegend: false,
+			dragmode: 'pan',
 			yaxis: {
                 title: "Response Time (s)",
                 type: "log",
@@ -71,6 +72,15 @@
                 },
             },
         };
+
+var configTemplate = {
+displayModeBar: true,
+ modeBarButtonsToRemove: ['toImage'],
+displaylogo: false,
+responsive: true,
+
+};
+
 
         function generateTrace(codeRange, color, site) {
             const [minCode, maxCode] = codeRange;
@@ -144,7 +154,7 @@
                     generateTrace([500, 599], "#eeeeaa", site),
                 ];
 
-                Plotly.newPlot(`div-${key}-graph`, traces, layout);
+                Plotly.newPlot(`div-${key}-graph`, traces, layout,configTemplate);
             });
         }
         document.addEventListener("dataLoaded", (event) => displayLogsTable(event.detail));
