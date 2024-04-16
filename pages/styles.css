@@ -30,47 +30,81 @@ body {
 
 
 
-
-
-/* Table styles */
 table {
     border-collapse: collapse;
     width: 100%;
-    background-color: var(--background);
 }
 th,
 td {
-    border: 1px solid var(--border);
+    border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
 th {
-    background-color: var(--header-bg);
+    background-color: #f2f2f2;
 }
 
-/* HTTP error classes */
-.http-error-0 {
-    background-color: var(--error-0);
+/* CSS formatting for specific classes */
+
+.alias {
+    /* Bold text */
+    font-weight: bold;
 }
+
+.desc {
+    /* Cursive */
+    font-style: italic;
+}
+
+.code {
+    /* Mono */
+    font-family: monospace;
+}
+
+.http-error-0 {
+    background-color: #f8d7da; /* Light red for HTTP 0 */
+}
+
 [class^="http-error-2"],
 [class*=" http-error-2"] {
-    background-color: var(--error-2);
-}
-[class^="http-error-3"],
-[class*=" http-error-3"] {
-    background-color: var(--error-3);
-}
-[class^="http-error-4"],
-[class*=" http-error-4"] {
-    background-color: var(--error-4);
+    background-color: #e6f7f0; /* Light blue for HTTP 200 */
 }
 
-/* Other classes */
+[class^="http-error-4"],
+[class*=" http-error-4"] {
+    background-color: #f6f7e6; /* Light red for HTTP 400s */
+}
+
+[class^="http-error-3"],
+[class*=" http-error-3"] {
+    background-color: #f6f7e6; /* Light yellow for HTTP 300s */
+}
+
 .rangeslider-slidebox {
-    stroke: var(--border);
+    stroke: gray;
     stroke-width: 1px;
 }
 
 .legend {
     filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+
+@media not all and (pointer: coarse) {
+    :root {
+        --is-touch-device: 0;
+    }
+}
+
+@media (pointer: coarse) {
+	    :root {
+        --is-touch-device: 1;
+    }
+    .rangeslider-container {
+        pointer-events: none;
+    }
+    .rangeslider-grabber-min,
+    .rangeslider-grabber-max {
+        display: none;
+    }
 }
