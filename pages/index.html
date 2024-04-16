@@ -12,6 +12,8 @@
         <div id="graphs"></div>
         <script src="script.js"></script>
         <script>
+			const isTouchDevice = getComputedStyle(document.documentElement).getPropertyValue('--is-touch-device') === "1";
+
             const rangeBegin = +1;
             const rangeEnd = -1.5 * 24;
             const currentDate = new Date();
@@ -29,7 +31,7 @@
 
             const layoutTemplate = {
                 margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 }, // margins in pixels.
-                dragmode: "pan", // Determines the mode of drag interactions.
+                dragmode: isTouchDevice ? false : "pan", // Determines the mode of drag interactions.
                 yaxis: {
                     title: "Response Time (s)", // title of the y-axis.
                     type: "log", // scale type for the y-axis. "log" represents a logarithmic scale.
