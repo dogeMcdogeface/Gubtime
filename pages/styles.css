@@ -53,7 +53,21 @@ th {
     stroke-width: 1px;
 }
 
+.legend {
+    filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+
+@media not all and (pointer: coarse) {
+    :root {
+        --is-touch-device: 0;
+    }
+}
+
 @media (pointer: coarse) {
+	    :root {
+        --is-touch-device: 1;
+    }
     .rangeslider-container {
         pointer-events: none;
     }
@@ -61,8 +75,4 @@ th {
     .rangeslider-grabber-max {
         display: none;
     }
-}
-
-.legend {
-    filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.2));
 }
