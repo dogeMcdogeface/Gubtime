@@ -174,12 +174,12 @@
                     layout.xaxis.range = [Date.parse(site.x.slice(-1)) + rangeBegin * 60 * 60 * 1000, Date.parse(site.x.slice(-1)) + rangeEnd * 60 * 60 * 1000];
 
                     let traces = [
-                        generateTrace([000, 099], "#ffaaaa", site),
-                        generateTrace([100, 199], "#aaffaa", site),
-                        generateTrace([200, 299], "#aaffaa", site),
-                        generateTrace([300, 399], "#eeffaa", site),
-                        generateTrace([400, 499], "#ffeeaa", site),
-                        generateTrace([500, 599], "#eeeeaa", site),
+                        generateTrace([000, 099], "#ff6666", site), // Informational responses (1xx)
+                        generateTrace([100, 199], "#66ff66", site), // Successful responses (2xx)
+                        generateTrace([200, 299], "#66ff66", site), // Successful responses (2xx)
+                        generateTrace([300, 399], "#e6fa73", site), // Redirection messages (3xx)
+                        generateTrace([400, 499], "#ffab19", site), // Client error responses (4xx)
+                        generateTrace([500, 599], "#fa690f", site), // Server error responses (5xx)
                     ];
 
                     Plotly.newPlot(`div-${key}-graph`, traces, layout, configTemplate).then(() => document.dispatchEvent(new CustomEvent("graphBuilt", {})));
@@ -214,7 +214,6 @@
                     }, 100);
                 }
             });
-
             window.onbeforeunload = () => localStorage.setItem("scrollpos", window.scrollY);
         </script>
     </body>
