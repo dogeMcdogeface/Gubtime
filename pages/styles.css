@@ -13,10 +13,6 @@ th {
 }
 
 /* CSS formatting for specific classes */
-.timst {
-    /* Format as dates */
-    /* Add your date formatting CSS here */
-}
 
 .alias {
     /* Bold text */
@@ -31,11 +27,6 @@ th {
 .code {
     /* Mono */
     font-family: monospace;
-}
-
-.time {
-    /* Format as milliseconds */
-    /* Add your millisecond formatting CSS here */
 }
 
 .http-error-0 {
@@ -66,4 +57,12 @@ th {
     .rangeslider-container {
         pointer-events: none;
     }
+    .rangeslider-grabber-min,
+    .rangeslider-grabber-max {
+        display: none;
+    }
+}
+
+.legend {
+    filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.2));
 }
