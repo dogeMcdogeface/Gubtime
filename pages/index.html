@@ -218,5 +218,18 @@
 
             window.onbeforeunload = () => localStorage.setItem("scrollpos", window.scrollY);
         </script>
+		    <script>
+        window.onload = function () {
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                // Device has touch capability
+                alert("This is a touch-enabled device!");
+            } else {
+                // Device does not have touch capability
+                alert("This is not a touch-enabled device.");
+            }
+        };
+    </script>
+		
+		
     </body>
 </html>

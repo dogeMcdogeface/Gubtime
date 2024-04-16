@@ -1,4 +1,4 @@
-const latestUrl = 'logs/latest.txt';
+const latestUrl = "https://raw.githubusercontent.com/dogeMcdogeface/Gubtime/master/pages/logs/latest.txt";
 let logsData;
 let maxLogFiles = 8;	//TODO
 

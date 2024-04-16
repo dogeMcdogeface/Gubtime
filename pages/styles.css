@@ -56,3 +56,14 @@ th {
 [class*=" http-error-3"] {
     background-color: #f6f7e6; /* Light yellow for HTTP 300s */
 }
+
+.rangeslider-slidebox {
+    stroke: gray;
+    stroke-width: 1px;
+}
+
+@media (pointer: coarse) {
+    .rangeslider-container {
+        pointer-events: none;
+    }
+}
