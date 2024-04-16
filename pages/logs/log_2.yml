@@ -1056,3 +1056,26 @@
     code: 000
     time: .033660769
 
+- entry:
+  - timst: 2024-04-16T10:40:47.491135796Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .055964469
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .054767742
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .144097473
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .423485755
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .039471664
+
