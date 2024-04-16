@@ -1,163 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gubtime</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
-</head>
-<body>
-    <div id="graphs"></div>
-    <script src="script.js"></script>
-    <script>
-	
-	                const rangeBegin = +1;
-                const rangeEnd = -1.5 * 24;
-	                const currentDate = new Date();
-                const currentDayStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0, 0);
-	
-        const traceTemplate = {
-            fill: "tozeroy",
-            mode: "lines",
-            line: {
-                connectgaps: false,
-                shape: "linear",
-                width: 3,
-            },
-        };
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gubtime</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    </head>
+    <body>
+        <div id="graphs"></div>
+        <script src="script.js"></script>
+        <script>
+            const rangeBegin = +1;
+            const rangeEnd = -1.5 * 24;
+            const currentDate = new Date();
+            const currentDayStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0, 0);
 
-        const layoutTemplate = {
-            margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 },
-            showlegend: false,
-			dragmode: 'pan',
-			yaxis: {
-                title: "Response Time (s)",
-                type: "log",
-                range: [-2, 0.8],
-                automargin: true,
-                fixedrange: true,
-                dtick: "D2",
-                tickformat: ".1g",
-            },
-            xaxis: {
-                type: "date",
-                rangeslider: {
-                    visible: true,
+            const traceTemplate = {
+                fill: "tozeroy", // Determines the fill type. "tozeroy" fills to zero y.
+                mode: "lines", // Determines the drawing mode for the traces. "lines" connects the data points with lines.
+                line: {
+                    connectgaps: false, // Determines if missing values in the provided data are connected.
+                    shape: "linear", // Determines the line shape. "linear" creates straight lines.
+                    width: 3, // width of the lines.
                 },
-                tickmode: "auto",
-                nticks: 24,
-                ticklabelmode: "period",
-                ticks: "inside",
-				                        tickformatstops: [
-                            { dtickrange: [null, 1000], value: "%H:%M:%S.%Lms\n%e %b %y" },
-                            { dtickrange: [1000, 60000], value: "%H:%M:%S\n%e %b %y" },
-                            { dtickrange: [null, 600000], value: "%H:%M\n%e %b %y" },
-                            { dtickrange: [600000, 43200000], value: "%H:%M\n%e %b %y" },
-                            { dtickrange: [43200000, "M1"], value: "%e. %b\n'%y" },
-                            { dtickrange: ["M1", "M12"], value: "%b '%y" },
-                            { dtickrange: ["M12", null], value: "%Y Y" },
-                        ],
-                minor: {
-                    tick0: currentDayStart,
-                    ticks: "outside",
-                    tickwidth: 3,
-                    gridwidth: 5,
-                    showgrid: true,
-                    ticklen: 40,
-                    dtick: 86400000.0,
-                    tickcolor: "#eee",
-                    gridcolor: "#eee",
+            };
+
+            const layoutTemplate = {
+                margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 }, // margins in pixels.
+                dragmode: "pan", // Determines the mode of drag interactions.
+                yaxis: {
+                    title: "Response Time (s)", // title of the y-axis.
+                    type: "log", // scale type for the y-axis. "log" represents a logarithmic scale.
+                    range: [-2, 0.8], // range of the y-axis.
+                    automargin: true, // Determines whether the layout should be auto-margin.
+                    fixedrange: true, //Is  this axis is zoom-able.
+                    dtick: "D2", // step in milliseconds between ticks.
+                    tickformat: ".1g", // tick label formatting rule using d3 formatting mini-language.
                 },
-            },
-        };
+                xaxis: {
+                    type: "date", // scale type for the x-axis. "date" represents dates.
+                    rangeslider: {
+                        visible: true, //Is the range slider is visible.
+                    },
+                    tickmode: "auto", // tick mode for the x-axis.
+                    nticks: 24, // number of ticks on the x-axis.
+                    ticklabelmode: "period", // tick label mode for the x-axis.
+                    ticks: "inside", // tick marks direction. "inside" draws the ticks inside the axes.
+                    tickformatstops: [
+                        // formatting rule for different ranges of tick values.
+                        { dtickrange: [null, 1000], value: "%H:%M:%S.%Lms\n%e %b %y" },
+                        { dtickrange: [1000, 60000], value: "%H:%M:%S\n%e %b %y" },
+                        { dtickrange: [null, 600000], value: "%H:%M\n%e %b %y" },
+                        { dtickrange: [600000, 43200000], value: "%H:%M\n%e %b %y" },
+                        { dtickrange: [43200000, "M1"], value: "%e. %b\n'%y" },
+                        { dtickrange: ["M1", "M12"], value: "%b '%y" },
+                        { dtickrange: ["M12", null], value: "%Y Y" },
+                    ],
+                    minor: {
+                        tick0: currentDayStart, // starting value of the minor ticks on the x-axis.
+                        ticks: "outside", // minor tick marks direction.
+                        tickwidth: 3, // width of the minor ticks.
+                        gridwidth: 5, // width of the grid lines.
+                        showgrid: true, // Are the grid lines drawn.
+                        ticklen: 40, // length of the minor ticks.
+                        dtick: 86400000.0, // step in milliseconds between minor ticks.
+                        tickcolor: "#eee", // color of the minor ticks.
+                        gridcolor: "#eee", // color of the grid lines.
+                    },
+                },
+                showlegend: true, // Is the legend drawn.
 
-var configTemplate = {
-displayModeBar: true,
- modeBarButtonsToRemove: ['toImage'],
-displaylogo: false,
-responsive: true,
+                legend: {
+                    x: 1, // x position of the legend.
+                    xanchor: "right", // horizontal alignment of the legend.
+                    y: 0.9, // y position of the legend.
+                    bgcolor: "#ffffffbb", // background color of the legend.
+                },
+                annotations: [
+                    {
+                        text: "now", // text associated with the annotation.
+                        showarrow: true, // Does the annotation have an arrow.
+                        arrowhead: 0, // width of the annotation arrowhead.
+                        arrowwidth: 2, // width of the annotation arrow.
+                        arrowcolor: "#dddddd", // color of the annotation arrow.
+                        font: {
+                            color: "#888888", // font color of the annotation text.
+                        },
 
-};
+                        yxef: "x domain", // x component of the arrow tail.
+                        axref: "x domain", // Determines if `ax` is referring to the x axis or the data.
+                        ax: 1, // x coordinate of the arrow tail.
+                        x: currentDate, // x coordinate of the annotation.
 
+                        yref: "paper", // Determines if `y` refers to the plot area or the paper.
+                        ayref: "paper", // Determines if `ay` is referring to the y axis or the data.
+                        ay: 1, // y coordinate of the arrow tail.
+                        y: 0, // y coordinate of the annotation.
 
-        function generateTrace(codeRange, color, site) {
-            const [minCode, maxCode] = codeRange;
-            const newTrace = { ...traceTemplate, x: [], y: [], text: [], line: { ...traceTemplate.line, color } };
-            site.x.forEach((_, i) => {
-                const currentCode = site.z[i];
-                if (currentCode < minCode || currentCode > maxCode) {
-				newTrace.x.push(null) 
-				newTrace.y.push(null);
-				newTrace.text.push(null);
-                }else {
-                    if (i > 0 && (site.z[i - 1] < minCode || site.z[i - 1] > maxCode)) {
-                        newTrace.x.push(site.x[i - 1], site.x[i - 1]);
-                        newTrace.y.push(0, site.y[i - 1]);
-						newTrace.text.push(null, null);
+                        xanchor: "left", // horizontal alignment of the text.
+                        yanchor: "center", // vertical alignment of the text.
+                    },
+                ],
+            };
+
+            var configTemplate = {
+                displayModeBar: true, // Is the mode bar visible.
+                modeBarButtonsToRemove: ["toImage"], // Removes buttons from the mode bar.
+                displaylogo: false, // Is the plotly logo displayed.
+                responsive: true, // Is the plot responsive to window resize.
+            };
+
+            function generateTrace(codeRange, color, site) {
+                const [minCode, maxCode] = codeRange;
+                const newTrace = { ...traceTemplate, name: minCode, x: [], y: [], text: [], line: { ...traceTemplate.line, color } };
+                site.x.forEach((_, i) => {
+                    const currentCode = site.z[i];
+                    if (currentCode < minCode || currentCode > maxCode) {
+                        newTrace.x.push(null);
+                        newTrace.y.push(null);
+                        newTrace.text.push(null);
+                    } else {
+                        if (i > 0 && (site.z[i - 1] < minCode || site.z[i - 1] > maxCode)) {
+                            newTrace.x.push(site.x[i - 1], site.x[i - 1]);
+                            newTrace.y.push(0, site.y[i - 1]);
+                            newTrace.text.push(null, null);
+                        }
+                        newTrace.x.push(site.x[i]);
+                        newTrace.y.push(site.y[i]);
+                        newTrace.text.push(currentCode);
+                        if (i < site.x.length - 1 && (site.z[i + 1] < minCode || site.z[i + 1] > maxCode)) {
+                            newTrace.x.push(site.x[i + 1]);
+                            newTrace.y.push(0);
+                            newTrace.text.push(null);
+                        }
                     }
-                    newTrace.x.push(site.x[i]);
-					newTrace.y.push(site.y[i]);
- 						newTrace.text.push(currentCode);
-                   if (i < site.x.length - 1 && (site.z[i + 1] < minCode || site.z[i + 1] > maxCode)) {
-                        newTrace.x.push(site.x[i + 1]);
-                        newTrace.y.push(0);
-						newTrace.text.push(null);
-                    }
+                });
+                return newTrace;
+            }
+
+            function displayLogsTable(logsData) {
+                const sites = {};
+                logsData.forEach((entry) => {
+                    const timestamp = entry.entry[0].timst;
+                    entry.entry.slice(1).forEach((site) => {
+                        sites[site.alias] ??= {
+                            desc: site.desc,
+                            x: [],
+                            y: [],
+                            z: [],
+                        };
+                        sites[site.alias].x.push(timestamp);
+                        sites[site.alias].y.push(site.time);
+                        sites[site.alias].z.push(site.code);
+                    });
+                });
+
+                Object.keys(sites).forEach((key, num) => {
+                    const site = sites[key];
+                    let div = document.getElementById(`div-${key}`) || document.createElement("div");
+                    let div_text = document.getElementById(`div-${key}-text`) || div.appendChild(document.createElement("div"));
+                    let div_graph = document.getElementById(`div-${key}-graph`) || div.appendChild(document.createElement("div"));
+
+                    div.id = `div-${key}`;
+                    div_graph.id = `div-${key}-graph`;
+                    div_text.id = `div-${key}-text`;
+
+                    div_text.innerHTML = `<h3>${key}</h3><p>Description: ${site.desc}</p>`;
+                    document.getElementById("graphs").appendChild(div);
+
+                    let layout = { ...layoutTemplate };
+                    layout.xaxis.range = [Date.parse(site.x.slice(-1)) + rangeBegin * 60 * 60 * 1000, Date.parse(site.x.slice(-1)) + rangeEnd * 60 * 60 * 1000];
+
+                    let traces = [
+                        generateTrace([000, 099], "#ffaaaa", site),
+                        generateTrace([100, 199], "#aaffaa", site),
+                        generateTrace([200, 299], "#aaffaa", site),
+                        generateTrace([300, 399], "#eeffaa", site),
+                        generateTrace([400, 499], "#ffeeaa", site),
+                        generateTrace([500, 599], "#eeeeaa", site),
+                    ];
+
+                    Plotly.newPlot(`div-${key}-graph`, traces, layout, configTemplate)
+					.then(() => document.dispatchEvent(new CustomEvent("graphBuilt", {})));
+                    document.dispatchEvent(new CustomEvent("graphBuilding", {}));
+
+                    /*if (div_graph.classList.contains("js-plotly-plot")){
+					console.log("Update Graph", div_graph)
+					Plotly.react(`div-${key}-graph`, traces, layout, configTemplate);
+					}else{
+					Plotly.newPlot(`div-${key}-graph`, traces, layout, configTemplate);
+					console.log("Create Graph",div_graph, div_graph.classList)
+					}*/
+                });
+            }
+            document.addEventListener("dataLoaded", (event) => displayLogsTable(event.detail));
+        </script>
+
+        <script>
+            let scrollTimer;
+            let pendingGraphs = 0;
+            let scrollpos = localStorage.getItem("scrollpos");
+
+            document.addEventListener("graphBuilding", () => pendingGraphs++);
+            document.addEventListener("graphBuilt", () => {
+                pendingGraphs--;
+                if (pendingGraphs === 0) {
+                    clearTimeout(scrollTimer);
+                    scrollTimer = setTimeout(() => {
+                        if (scrollpos) window.scrollTo({ top: scrollpos, left: 0, behavior: "smooth" });
+                        localStorage.removeItem("scrollpos");
+                        scrollpos = null;
+                    }, 100);
                 }
             });
-            return newTrace;
-        }
 
-        function displayLogsTable(logsData) {
-            const sites = {};
-            logsData.forEach((entry) => {
-                const timestamp = entry.entry[0].timst;
-                entry.entry.slice(1).forEach((site) => {
-                    sites[site.alias] ??= {
-                        desc: site.desc,
-                        x: [],
-                        y: [],
-                        z: [],
-                    };
-                    sites[site.alias].x.push(timestamp);
-                    sites[site.alias].y.push(site.time);
-                    sites[site.alias].z.push(site.code);
-                });
-            });
-
-            Object.keys(sites).forEach((key, num) => {
-                const site = sites[key];
-                let div = document.getElementById(`div-${key}`) || document.createElement("div");
-                div.id = `div-${key}`;
-                div.innerHTML = `<h3>${key}</h3><p>Description: ${site.desc}</p>`;
-                let div_graph = div.appendChild(document.createElement("div"));
-                div_graph.id = `div-${key}-graph`;
-                document.getElementById("graphs").appendChild(div);
-
-
-
-                let layout = {...layoutTemplate};
-
-				layout.xaxis.range = [
-				Date.parse(site.x.slice(-1)) + rangeBegin * 60 * 60 * 1000,
-				Date.parse(site.x.slice(-1)) + rangeEnd * 60 * 60 * 1000]
-
-
-                let traces = [
-                    generateTrace([000, 099], "#ffaaaa", site),
-                    generateTrace([100, 199], "#aaffaa", site),
-                    generateTrace([200, 299], "#aaffaa", site),
-                    generateTrace([300, 399], "#eeffaa", site),
-                    generateTrace([400, 499], "#ffeeaa", site),
-                    generateTrace([500, 599], "#eeeeaa", site),
-                ];
-
-                Plotly.newPlot(`div-${key}-graph`, traces, layout,configTemplate);
-            });
-        }
-        document.addEventListener("dataLoaded", (event) => displayLogsTable(event.detail));
-    </script>
-</body>
+            window.onbeforeunload = () => localStorage.setItem("scrollpos", window.scrollY);
+        </script>
+    </body>
 </html>
