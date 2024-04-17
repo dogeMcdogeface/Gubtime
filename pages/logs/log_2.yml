@@ -2804,3 +2804,26 @@
     code: 000
     time: .158182795
 
+- entry:
+  - timst: 2024-04-17T02:39:24.316624576Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .076493147
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .078111524
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .157573330
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .389498394
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .069602269
+
