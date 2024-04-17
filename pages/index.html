@@ -7,13 +7,42 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.0.0/js-yaml.min.js"></script>
         <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
-    </head>
-    <body>
-        <div id="graphs"></div>
         <script src="theme.js"></script>
         <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="left-section">
+                <div class="menu-button" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h1>Gubtime</h1>
+            </div>
+
+            <div class="right-section">
+                <div class="info-label">
+                    <span class="fixed-label">UP </span>
+                    <span class="dynamic-label" id="D">111</span>
+                </div>
+                <div class="info-label">
+                    <span class="fixed-label">DOWN</span>
+                    <span class="dynamic-label" id="info2">222</span>
+                </div>
+                <div class="info-label">
+                    <span class="fixed-label">WARN</span>
+                    <span class="dynamic-label" id="info3">333</span>
+                </div>
+                <div class="info-label">
+                    <span class="fixed-label">LAST UPDATE</span>
+                    <span class="dynamic-label" id="info4">56 s</span>
+                </div>
+            </div>
+        </div>
+        <div id="siteList"></div>
         <script>
-			const isTouchDevice = getComputedStyle(document.documentElement).getPropertyValue('--is-touch-device') === "1";
+            const isTouchDevice = getComputedStyle(document.documentElement).getPropertyValue("--is-touch-device") === "1";
 
             const rangeBegin = +1;
             const rangeEnd = -1.5 * 24;
@@ -32,18 +61,39 @@
 
             const layoutTemplate = {
                 margin: { l: 10, r: 10, b: 20, t: 10, pad: 2 }, // margins in pixels.
+
+                paper_bgcolor: getCSSVar("--graph-paper_bgcolor-color"),
+                plot_bgcolor: getCSSVar("--graph-plot_bgcolor-color"),
+                font: {
+                    color: getCSSVar("--graph-font-color"),
+                },
+
                 dragmode: isTouchDevice ? false : "pan", // Determines the mode of drag interactions.
                 yaxis: {
                     title: "Response Time (s)", // title of the y-axis.
                     type: "log", // scale type for the y-axis. "log" represents a logarithmic scale.
+                    tickcolor: getCSSVar("--graph-yaxis-tick-color"), // color of the  ticks.
+                    gridcolor: getCSSVar("--graph-yaxis-grid-color"), // color of the grid lines.
                     range: [-2, 0.8], // range of the y-axis.
                     automargin: true, // Determines whether the layout should be auto-margin.
                     fixedrange: true, //Is  this axis is zoom-able.
                     dtick: "D2", // step in milliseconds between ticks.
                     tickformat: ".1g", // tick label formatting rule using d3 formatting mini-language.
+                    ticks: "", // minor tick marks direction.
+                    minor: {
+                        tickmode: "array",
+                        tickvals: [0.01, 0.1, 1],
+                        ticks: "", // minor tick marks direction.
+                        gridwidth: 2, // width of the grid lines.
+                        showgrid: true, // Are the grid lines drawn.
+                        tickcolor: getCSSVar("--graph-yaxis-minor-tick-color"), // color of the minor ticks.
+                        gridcolor: getCSSVar("--graph-yaxis-minor-grid-color"), // color of the grid lines.
+                    },
                 },
                 xaxis: {
                     type: "date", // scale type for the x-axis. "date" represents dates.
+                    tickcolor: getCSSVar("--graph-xaxis-tick-color"), // color of the  ticks.
+                    gridcolor: getCSSVar("--graph-xaxis-grid-color"), // color of the grid lines.
                     rangeslider: {
                         visible: true, //Is the range slider is visible.
                     },
@@ -69,8 +119,8 @@
                         showgrid: true, // Are the grid lines drawn.
                         ticklen: 40, // length of the minor ticks.
                         dtick: 86400000.0, // step in milliseconds between minor ticks.
-                        tickcolor: "#eee", // color of the minor ticks.
-                        gridcolor: "#eee", // color of the grid lines.
+                        tickcolor: getCSSVar("--graph-xaxis-minor-tick-color"), // color of the minor ticks.
+                        gridcolor: getCSSVar("--graph-xaxis-minor-grid-color"), // color of the grid lines.
                     },
                 },
                 showlegend: true, // Is the legend drawn.
@@ -79,7 +129,10 @@
                     x: 1, // x position of the legend.
                     xanchor: "right", // horizontal alignment of the legend.
                     y: 0.9, // y position of the legend.
-                    bgcolor: "#ffffffbb", // background color of the legend.
+                    bgcolor: getCSSVar("--graph-legend-background-color"), // background color of the legend.
+                    font: {
+                        color: getCSSVar("--graph-legend-font-color"), // background color of the legend.
+                    },
                 },
                 annotations: [
                     {
@@ -87,9 +140,9 @@
                         showarrow: true, // Does the annotation have an arrow.
                         arrowhead: 0, // width of the annotation arrowhead.
                         arrowwidth: 2, // width of the annotation arrow.
-                        arrowcolor: "#dddddd", // color of the annotation arrow.
+                        arrowcolor: getCSSVar("--graph-annot-arrow-color"), // color of the annotation arrow.
                         font: {
-                            color: "#888888", // font color of the annotation text.
+                            color: getCSSVar("--graph-annot-font-color"), // font color of the annotation text.
                         },
 
                         yxef: "x domain", // x component of the arrow tail.
@@ -163,36 +216,38 @@
                 Object.keys(sites).forEach((key, num) => {
                     const site = sites[key];
                     let div = document.getElementById(`div-${key}`) || document.createElement("div");
-                    let div_text = document.getElementById(`div-${key}-text`) || div.appendChild(document.createElement("div"));
-                    let div_graph = document.getElementById(`div-${key}-graph`) || div.appendChild(document.createElement("div"));
+                    let div_text = document.getElementById(`div-text-${key}`) || div.appendChild(document.createElement("div"));
+                    let div_graph = document.getElementById(`div-graph-${key}`) || div.appendChild(document.createElement("div"));
 
                     div.id = `div-${key}`;
-                    div_graph.id = `div-${key}-graph`;
-                    div_text.id = `div-${key}-text`;
+                    div_graph.id = `div-graph-${key}`;
+                    div_graph.classList.add("site-graph");
+                    div_text.id = `div-text-${key}`;
+                    div_text.classList.add("site-text");
 
-                    div_text.innerHTML = `<h3>${key}</h3><p>Description: ${site.desc}</p>`;
-                    document.getElementById("graphs").appendChild(div);
+                    div_text.innerHTML = `<h2>${key}</h2><p>${site.desc}</p>`;
+                    document.getElementById("siteList").appendChild(div);
 
                     let layout = { ...layoutTemplate };
                     layout.xaxis.range = [Date.parse(site.x.slice(-1)) + rangeBegin * 60 * 60 * 1000, Date.parse(site.x.slice(-1)) + rangeEnd * 60 * 60 * 1000];
 
                     let traces = [
-                        generateTrace([000, 099], "#f55151", site), // System or Network error (0xx)
-                        generateTrace([100, 199], "#66ff66", site), // Informational responses (1xx)
-                        generateTrace([200, 299], "#66ff66", site), // Successful responses (2xx)
-                        generateTrace([300, 399], "#e6fa73", site), // Redirection messages (3xx)
-                        generateTrace([400, 499], "#ffab19", site), // Client error responses (4xx)
-                        generateTrace([500, 599], "#fa690f", site), // Server error responses (5xx)
+                        generateTrace([000, 099], getCSSVar("--graph-error-0-color"), site), // System or Network error (0xx)
+                        generateTrace([100, 199], getCSSVar("--graph-error-2-color"), site), // Informational responses (1xx) and Successful responses (2xx)
+                        generateTrace([200, 299], getCSSVar("--graph-error-2-color"), site), // Successful responses (2xx)
+                        generateTrace([300, 399], getCSSVar("--graph-error-3-color"), site), // Redirection messages (3xx)
+                        generateTrace([400, 499], getCSSVar("--graph-error-4-color"), site), // Client error responses (4xx)
+                        generateTrace([500, 599], getCSSVar("--graph-error-5-color"), site), // Server error responses (5xx)
                     ];
 
-                    Plotly.newPlot(`div-${key}-graph`, traces, layout, configTemplate).then(() => document.dispatchEvent(new CustomEvent("graphBuilt", {})));
+                    Plotly.newPlot(`div-graph-${key}`, traces, layout, configTemplate).then(() => document.dispatchEvent(new CustomEvent("graphBuilt", {})));
                     document.dispatchEvent(new CustomEvent("graphBuilding", {}));
 
                     /*if (div_graph.classList.contains("js-plotly-plot")){
 					console.log("Update Graph", div_graph)
-					Plotly.react(`div-${key}-graph`, traces, layout, configTemplate);
+					Plotly.react(`div-graph-${key}`, traces, layout, configTemplate);
 					}else{
-					Plotly.newPlot(`div-${key}-graph`, traces, layout, configTemplate);
+					Plotly.newPlot(`div-graph-${key}`, traces, layout, configTemplate);
 					console.log("Create Graph",div_graph, div_graph.classList)
 					}*/
                 });

@@ -1,94 +1,268 @@
-/* Default to light theme */
-:root,
 :root.light {
     /* Light theme colors */
+    --font-color: #000000;
     --background-color: #ffffff;
     --border-color: #dddddd;
-    --header-bg-color: #f2f2f2;
-    --error-0-color: #f8d7da;
-    --error-2-color: #e6f7f0;
-    --error-3-color: #f6f7e6;
-    --error-4-color: #f6f7e6;
+
+    --top-bar-font-color: #999;
+    --top-bar-background-color: #010409;
+    --top-bar-border-color: #ffffff33;
+
+    --table-header-background-color: #f2f2f2;
+    --table-error-0-color: #f8d7da;
+    --table-error-2-color: #e6f7f0;
+    --table-error-3-color: #f6f7e6;
+    --table-error-4-color: #f6f7e6;
+
+    --graph-error-0-color: #f55151; /* System or Network error (0xx) */
+    --graph-error-1-color: #66ff66; /* Informational responses (1xx) and Successful responses (2xx) */
+    --graph-error-3-color: #e6fa73; /* Redirection messages (3xx) */
+    --graph-error-4-color: #ffab19; /* Client error responses (4xx) */
+    --graph-error-5-color: #fa690f; /* Server error responses (5xx) */
+
+    --graph-paper_bgcolor-color: #ffffff;
+    --graph-plot_bgcolor-color: #ffffff;
+    --graph-font-color: #000000;
+
+    --graph-legend-background-color: #bbbbff44;
+    --graph-legend-font-color: #000000;
+    --graph-legend-shadow-color: #000000;
+
+    --graph-annot-arrow-color: #dddddd;
+    --graph-annot-font-color: #888888;
+
+    --graph-xaxis-tick-color: #eeeeee;
+    --graph-xaxis-grid-color: #eeeeee;
+    --graph-xaxis-minor-tick-color: #eeeeee;
+    --graph-xaxis-minor-grid-color: #eeeeee;
+
+    --graph-yaxis-tick-color: #eeeeee;
+    --graph-yaxis-grid-color: #eeeeee;
+    --graph-yaxis-minor-tick-color: #eeeeee;
+    --graph-yaxis-minor-grid-color: #eeeeee;
 }
 
+/* Default to dark theme */
+:root,
 :root.dark {
     /* Dark theme colors */
-    --background-color: #333333;
+    --font-color: #dddddd;
+    --background-color: #0d1117;
     --border-color: #555555;
-    --header-bg-color: #444444;
-    --error-0-color: #993333;
-    --error-2-color: #225555;
-    --error-3-color: #555522;
-    --error-4-color: #554422;
-}
 
+    --top-bar-font-color: #999;
+    --top-bar-background-color: #010409;
+    --top-bar-border-color: #ffffff33;
+
+    --table-header-background-color: #252935;
+    --table-error-0-color: #993333;
+    --table-error-2-color: #0f9211;
+    --table-error-3-color: #c7a907;
+    --table-error-4-color: #b6550d;
+
+    --graph-error-0-color: #f55151; /* System or Network error (0xx) */
+    --graph-error-2-color: #66ff66; /* Informational responses (1xx) and Successful responses (2xx) */
+    --graph-error-3-color: #e6fa73; /* Redirection messages (3xx) */
+    --graph-error-4-color: #ffab19; /* Client error responses (4xx) */
+    --graph-error-5-color: #fa690f; /* Server error responses (5xx) */
+
+    --graph-paper_bgcolor-color: #0d1117;
+    --graph-plot_bgcolor-color: #0d1117;
+    --graph-font-color: #dddddd;
+
+    --graph-legend-background-color: #bbbbff44;
+    --graph-legend-font-color: #ffffff;
+    --graph-legend-shadow-color: #000000;
+
+    --graph-annot-arrow-color: #dddddd;
+    --graph-annot-font-color: #888888;
+
+    --graph-xaxis-tick-color: #444444;
+    --graph-xaxis-grid-color: #444444;
+    --graph-xaxis-minor-tick-color: #444444;
+    --graph-xaxis-minor-grid-color: #444444;
+
+    --graph-yaxis-tick-color: #444444;
+    --graph-yaxis-grid-color: #444444;
+    --graph-yaxis-minor-tick-color: #444444;
+    --graph-yaxis-minor-grid-color: #444444;
+}
 
 body {
-  background: var(--background-color);
+    color: var(--font-color);
+    background: var(--background-color);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
+h1 {
+    margin: 5px;
+}
+/*------------------------- TOP BAR -------------------------*/
+.top-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--top-bar-background-color);
+    color: var(--top-bar-font-color);
+    padding: 0px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Adjust the z-index value as needed */
+}
 
+.top-bar .left-section {
+    display: flex;
+    align-items: center;
+    flex: min-content;
+    margin-right: auto;
+    white-space: nowrap;
+}
 
+/* Simplified and shortened */
+.top-bar .right-section {
+    display: grid;
+    grid-auto-flow: column;
+    transition: all 0.25s ease-in-out;
+}
 
-table {
+.top-bar .right-section .info-label {
+    display: inline-grid;
+    padding: 0 5px;
+    border-left: 1px solid var(--top-bar-border-color); /* 1px border */
+}
+
+.top-bar .right-section .info-label .fixed-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.top-bar .right-section .info-label .dynamic-label {
+    text-align: center;
+}
+
+.top-bar .right-section .info-label #info4 {
+    text-align: left;
+}
+
+@media screen and (max-width: 420px) {
+    .top-bar .right-section {
+        grid-auto-flow: row;
+    }
+
+    .top-bar .right-section .info-label {
+        display: flex;
+    }
+
+    .top-bar .right-section .info-label .fixed-label {
+        white-space: nowrap;
+        flex: auto;
+        margin-right: 1ch;
+        text-align: left;
+    }
+}
+
+.menu-button {
+    display: block;
+    user-select: none;
+    margin: 5px;
+    border: 1px solid var(--top-bar-border-color); /* 1px thick border with rounded corners */
+    border-radius: 15%; /* Ensure the border makes the element round */
+    padding: 5px;
+    cursor: pointer;
+    aspect-ratio: 1/1; /* Maintain square aspect ratio */
+}
+
+.menu-button span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    background-color: var(--top-bar-font-color);
+    margin: 4px 0;
+    border-radius: 3px;
+}
+
+.menu-button:hover {
+    filter: brightness(1.8);
+}
+
+.menu-button:active {
+    filter: brightness(1.1);
+}
+
+.menu-button:active span {
+    transform: scale(0.9);
+}
+
+/*------------------------ LOG TABLE ------------------------*/
+
+#logsTable {
     border-collapse: collapse;
     width: 100%;
 }
-th,
-td {
-    border: 1px solid #dddddd;
+#logsTable th,
+#logsTable td {
+    border: 1px solid var(--border-color);
     text-align: left;
     padding: 8px;
 }
-th {
-    background-color: #f2f2f2;
+#logsTable th {
+    background-color: var(--table-header-background-color);
 }
 
-/* CSS formatting for specific classes */
-
-.alias {
-    /* Bold text */
+#logsTable .alias {
     font-weight: bold;
 }
 
-.desc {
-    /* Cursive */
+#logsTable .desc {
     font-style: italic;
 }
 
-.code {
-    /* Mono */
+#logsTable .code {
     font-family: monospace;
 }
 
-.http-error-0 {
-    background-color: #f8d7da; /* Light red for HTTP 0 */
+#logsTable .http-error-0 {
+    background-color: var(--table-error-0-color); /* Light red for HTTP 0 */
 }
 
-[class^="http-error-2"],
-[class*=" http-error-2"] {
-    background-color: #e6f7f0; /* Light blue for HTTP 200 */
+#logsTable [class^="http-error-2"],
+#logsTable [class*=" http-error-2"] {
+    background-color: var(--table-error-2-color); /* Light blue for HTTP 200 */
 }
 
-[class^="http-error-4"],
-[class*=" http-error-4"] {
-    background-color: #f6f7e6; /* Light red for HTTP 400s */
+#logsTable [class^="http-error-4"],
+#logsTable [class*=" http-error-4"] {
+    background-color: var(--table-error-4-color); /* Light red for HTTP 400s */
 }
 
-[class^="http-error-3"],
-[class*=" http-error-3"] {
-    background-color: #f6f7e6; /* Light yellow for HTTP 300s */
+#logsTable [class^="http-error-3"],
+#logsTable [class*=" http-error-3"] {
+    background-color: var(--table-error-3-color); /* Light yellow for HTTP 300s */
 }
 
-.rangeslider-slidebox {
+/*------------------------- GRAPHS --------------------------*/
+
+.site-text {
+    margin-left: 1ch;
+}
+.site-text p {
+    margin-left: 1ch;
+}
+
+#siteList .rangeslider-slidebox {
     stroke: gray;
     stroke-width: 1px;
 }
 
-.legend {
-    filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.2));
+#siteList .legend {
+    backdrop-filter: blur(2px);
+    filter: drop-shadow(-4px 4px 4px var(--graph-legend-shadow-color));
 }
-
 
 @media not all and (pointer: coarse) {
     :root {
@@ -97,14 +271,14 @@ th {
 }
 
 @media (pointer: coarse) {
-	    :root {
+    :root {
         --is-touch-device: 1;
     }
-    .rangeslider-container {
+    #siteList .rangeslider-container {
         pointer-events: none;
     }
-    .rangeslider-grabber-min,
-    .rangeslider-grabber-max {
+    #siteList .rangeslider-grabber-min,
+    #siteList .rangeslider-grabber-max {
         display: none;
     }
 }
