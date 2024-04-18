@@ -24,19 +24,19 @@
             <div class="right-section">
                 <div class="info-label">
                     <span class="fixed-label">UP </span>
-                    <span class="dynamic-label" id="info1">...</span>
+                    <span class="dynamic-label" id="info0">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">DOWN</span>
-                    <span class="dynamic-label" id="info2">...</span>
+                    <span class="dynamic-label" id="info1">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">WARN</span>
-                    <span class="dynamic-label" id="info3">...</span>
+                    <span class="dynamic-label" id="info2">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">LAST UPDATE</span>
-                    <span class="dynamic-label" id="info4">...</span>
+                    <span class="dynamic-label" id="info3">...</span>
                 </div>
             </div>
         </div>
@@ -69,8 +69,8 @@
                 },
 
                 dragmode: isTouchDevice ? false : "pan", // Determines the mode of drag interactions.
-				clickmode: "",
-				hovermode: isTouchDevice ? false : "hovermode",
+                clickmode: "",
+                hovermode: isTouchDevice ? false : "hovermode",
                 yaxis: {
                     title: "Response Time (s)", // title of the y-axis.
                     type: "log", // scale type for the y-axis. "log" represents a logarithmic scale.
@@ -283,14 +283,18 @@
                     lastUpdate = entry[0].timst;
 
                     const c = [0, 0, 0];
-                    entry.slice(1).forEach((site) => c[site.code < 100 ? 0 : site.code < 300 ? 1 : 2]++);
-                    ["info1", "info2", "info3"].forEach((id, i) => (document.getElementById(id).textContent = c[i]));
+                    entry.slice(1).forEach((site) => c[site.code < 100 ? 1 : site.code < 300 ? 0 : site.code < 600 ? 2 : 0]++);
+                    ["info0", "info1", "info2"].forEach((id, i) => {
+                        const el = document.getElementById(id);
+                        el.textContent = c[i];
+                        el.classList.toggle("nonzero", !!c[i]);
+                    });
                 }
             });
 
             setInterval(() => {
                 if (lastUpdate === 0) return;
-                document.getElementById("info4").textContent = timeSince(lastUpdate) + " ago";
+                document.getElementById("info3").textContent = timeSince(lastUpdate) + " ago";
             }, 1000);
         </script>
     </body>
