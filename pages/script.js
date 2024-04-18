@@ -7,10 +7,11 @@ async function fetchData(url) {
     try {
         console.log("Loading file: ", url);
         const response = await fetch(url);
+		if(!response.ok) return null;
         const data = await response.text();
         return data;
     } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("Error fetching data:", error);
         return null;
     }
 }
