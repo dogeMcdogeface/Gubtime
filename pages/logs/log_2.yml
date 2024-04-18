@@ -6185,3 +6185,26 @@
     code: 000
     time: .179698039
 
+- entry:
+  - timst: 2024-04-18T07:02:52.969064015Z
+  - alias: Example
+    desc: Example website
+    code: 200
+    time: .053193361
+  - alias: Google300
+    desc: Probably always up, but gonna return 30x (moved)
+    code: 301
+    time: .047429166
+  - alias: Google400
+    desc: Probably always up, but gonna return 40x (notfound)
+    code: 404
+    time: .142743996
+  - alias: Best Website
+    desc: Probably always DOWN
+    code: 200
+    time: .424906219
+  - alias: Nonexistent Example
+    desc: Another example website
+    code: 000
+    time: .073972099
+
