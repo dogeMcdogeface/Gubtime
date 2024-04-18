@@ -24,19 +24,19 @@
             <div class="right-section">
                 <div class="info-label">
                     <span class="fixed-label">UP </span>
-                    <span class="dynamic-label" id="D">111</span>
+                    <span class="dynamic-label" id="info1">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">DOWN</span>
-                    <span class="dynamic-label" id="info2">222</span>
+                    <span class="dynamic-label" id="info2">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">WARN</span>
-                    <span class="dynamic-label" id="info3">333</span>
+                    <span class="dynamic-label" id="info3">...</span>
                 </div>
                 <div class="info-label">
                     <span class="fixed-label">LAST UPDATE</span>
-                    <span class="dynamic-label" id="info4">56 s</span>
+                    <span class="dynamic-label" id="info4">...</span>
                 </div>
             </div>
         </div>
@@ -273,6 +273,23 @@
                 }
             });
             window.onbeforeunload = () => localStorage.setItem("scrollpos", window.scrollY);
+
+            let lastUpdate = 0;
+            document.addEventListener("newdataLoaded", (event) => {
+                const entry = event.detail.slice(-1)[0].entry;
+                if (lastUpdate < entry[0].timst) {
+                    lastUpdate = entry[0].timst;
+
+                    const c = [0, 0, 0];
+                    entry.slice(1).forEach((site) => c[site.code < 100 ? 0 : site.code < 300 ? 1 : 2]++);
+                    ["info1", "info2", "info3"].forEach((id, i) => (document.getElementById(id).textContent = c[i]));
+                }
+            });
+
+            setInterval(() => {
+                if (lastUpdate === 0) return;
+                document.getElementById("info4").textContent = timeSince(lastUpdate) + " ago";
+            }, 1000);
         </script>
     </body>
 </html>

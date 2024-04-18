@@ -17,7 +17,7 @@ async function fetchData(url) {
 
 // Send signal after loading data
 async function loadDataAndSendSignal() {
-    const latestData = await fetchData(latestUrl);
+    const latestData = await fetchData(`${latestUrl}?${Date.now()}`);
     console.log("Latest: ", latestData);
 
     if (latestData) {
@@ -34,7 +34,7 @@ async function loadDataAndSendSignal() {
             const logFile = `${logRepo}/${logBrnc}/${logPath}${logName}${logWeek}${logType}`;
             console.log("Composed Log Path: ", logFile);
             // Construct URL for the latest log file
-            const logUrl = `https://raw.githubusercontent.com/${logFile}	`;
+            const logUrl = `https://raw.githubusercontent.com/${logFile}?${Date.now()}`;
             // Fetch the log file
             const yamlData = await fetchData(logUrl);
             logWeek--;
