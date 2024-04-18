@@ -148,7 +148,7 @@ h1 {
 .top-bar .right-section .info-label #info4 {
     text-align: left;
     white-space: nowrap;
-    max-width: 3ch;
+    max-width: 5ch;
 }
 
 @media screen and (max-width: 420px) {
@@ -158,6 +158,7 @@ h1 {
 
     .top-bar .right-section .info-label {
         display: flex;
+		font-size: small;
     }
 
     .top-bar .right-section .info-label .fixed-label {
@@ -165,7 +166,7 @@ h1 {
         flex: auto;
         margin-right: 1ch;
         text-align: left;
-        max-width: 8ch;
+        //max-width: 8ch;
     }
 }
 
