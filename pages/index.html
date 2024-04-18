@@ -283,7 +283,7 @@
                     lastUpdate = entry[0].timst;
 
                     const c = [0, 0, 0];
-                    entry.slice(1).forEach((site) => c[site.code < 100 ? 1 : site.code < 300 ? 0 : site.code < 600 ? 2 : 0]++);
+                    entry.slice(1).forEach((site) => c[site.code < 100 ? 1 : site.code < 400 ? 0 : site.code < 600 ? 2 : 0]++);
                     ["info0", "info1", "info2"].forEach((id, i) => {
                         const el = document.getElementById(id);
                         el.textContent = c[i];
