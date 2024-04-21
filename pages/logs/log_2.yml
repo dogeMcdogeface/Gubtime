@@ -9799,3 +9799,30 @@
     code: 200
     time: .101662228
 
+- entry:
+  - timst: 2024-04-21T17:27:47.742951756Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .564001374
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .755879358
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 2.921346049
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .566404090
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .569994798
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .115151886
+
