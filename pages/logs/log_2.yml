@@ -9880,3 +9880,30 @@
     code: 200
     time: .553189901
 
+- entry:
+  - timst: 2024-04-21T17:50:31.817441307Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .369168646
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .544267409
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 4.875538856
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .441076647
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .425117790
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .116892097
+
