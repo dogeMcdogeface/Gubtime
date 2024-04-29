@@ -21301,3 +21301,30 @@
     code: 200
     time: .296443620
 
+- entry:
+  - timst: 2024-04-29T16:40:45.102277636Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .508148778
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .730866367
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 5.243114704
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .530450627
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .569935114
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .302680678
+
