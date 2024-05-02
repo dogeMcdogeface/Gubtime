@@ -8260,3 +8260,30 @@
     code: 200
     time: .162903000
 
+- entry:
+  - timst: 2024-05-02T15:21:53.860689947Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .483302893
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .843452290
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 2.585753799
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .487619752
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .471447461
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .145336542
+
