@@ -4831,3 +4831,30 @@
     code: 200
     time: .120331105
 
+- entry:
+  - timst: 2024-05-08T13:31:52.283388442Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .455332547
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .596360182
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 7.330738063
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .392579455
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .388364275
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .107268321
+
