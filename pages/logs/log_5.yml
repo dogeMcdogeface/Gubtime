@@ -8125,3 +8125,30 @@
     code: 200
     time: .126497215
 
+- entry:
+  - timst: 2024-05-09T14:40:30.054942957Z
+  - alias: Main Website
+    desc: Best website.
+    code: 000
+    time: 3.011323523
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 000
+    time: 3.009556586
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 000
+    time: 3.009708061
+  - alias: Code server
+    desc: Code server.
+    code: 000
+    time: 3.009485733
+  - alias: Remote Server
+    desc: Remote server.
+    code: 000
+    time: 3.009003335
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .210524837
+
