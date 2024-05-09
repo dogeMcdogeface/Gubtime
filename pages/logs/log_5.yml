@@ -8017,3 +8017,30 @@
     code: 200
     time: .185104914
 
+- entry:
+  - timst: 2024-05-09T13:50:45.335133591Z
+  - alias: Main Website
+    desc: Best website.
+    code: 000
+    time: 3.010288544
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 000
+    time: 3.009477731
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 000
+    time: 3.008945138
+  - alias: Code server
+    desc: Code server.
+    code: 000
+    time: 3.009619542
+  - alias: Remote Server
+    desc: Remote server.
+    code: 000
+    time: 3.009016851
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .149317626
+
