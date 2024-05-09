@@ -8044,3 +8044,30 @@
     code: 200
     time: .149317626
 
+- entry:
+  - timst: 2024-05-09T14:02:02.305760055Z
+  - alias: Main Website
+    desc: Best website.
+    code: 000
+    time: 3.011430580
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 000
+    time: 3.009552186
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 000
+    time: 3.009979244
+  - alias: Code server
+    desc: Code server.
+    code: 000
+    time: 3.009819127
+  - alias: Remote Server
+    desc: Remote server.
+    code: 000
+    time: 3.009145582
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .167567042
+
