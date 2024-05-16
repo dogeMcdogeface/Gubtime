@@ -9043,3 +9043,30 @@
     code: 200
     time: .218196334
 
+- entry:
+  - timst: 2024-05-16T22:31:49.658111683Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .481590867
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .629110946
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 8.022664269
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .434660245
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .476127722
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .156560975
+
