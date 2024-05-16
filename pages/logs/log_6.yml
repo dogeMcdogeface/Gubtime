@@ -8449,3 +8449,30 @@
     code: 200
     time: .156227956
 
+- entry:
+  - timst: 2024-05-16T18:32:56.944622199Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .455009315
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .603474821
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 5.481262134
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .430098199
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .464217612
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .321301124
+
