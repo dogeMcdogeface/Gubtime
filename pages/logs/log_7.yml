@@ -9961,3 +9961,30 @@
     code: 200
     time: .120440462
 
+- entry:
+  - timst: 2024-05-24T07:31:10.061868781Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .610017143
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .721107362
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 7.965086903
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .573746613
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .537146336
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .419675865
+
