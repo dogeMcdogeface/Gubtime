@@ -9745,3 +9745,30 @@
     code: 200
     time: .098084079
 
+- entry:
+  - timst: 2024-05-24T06:08:10.730194488Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .566222486
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .759307529
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 8.154078179
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .617760524
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .593002371
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .099894133
+
