@@ -18304,3 +18304,30 @@
     code: 200
     time: .096866833
 
+- entry:
+  - timst: 2024-05-26T22:01:47.209553871Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .423274715
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .574218665
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 4.727435457
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .371767184
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .349031073
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .092879877
+
