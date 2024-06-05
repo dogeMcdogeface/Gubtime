@@ -4399,3 +4399,30 @@
     code: 200
     time: .106217546
 
+- entry:
+  - timst: 2024-06-05T11:40:49.142106007Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .476513618
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .667521993
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 2.941537396
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .444386853
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .419141756
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .109620232
+
