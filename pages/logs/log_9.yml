@@ -7909,3 +7909,30 @@
     code: 200
     time: .102406229
 
+- entry:
+  - timst: 2024-06-06T15:50:34.972980792Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .553865070
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .743796237
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 3.049010599
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .587240700
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .553843735
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .104968129
+
