@@ -8071,3 +8071,30 @@
     code: 200
     time: .315013264
 
+- entry:
+  - timst: 2024-06-06T17:02:09.892066907Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .505326105
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .660644283
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 7.768626019
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .456237830
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .438925896
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .108744735
+
