@@ -8881,3 +8881,30 @@
     code: 200
     time: .100361432
 
+- entry:
+  - timst: 2024-06-06T22:50:31.360270868Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .639812129
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .796199016
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 3.638141440
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .571255904
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .580080515
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .120034600
+
