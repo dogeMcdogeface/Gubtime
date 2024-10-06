@@ -808,3 +808,30 @@
     code: 200
     time: .104037426
 
+- entry:
+  - timst: 2024-10-06T00:39:59.459920290Z
+  - alias: Main Website
+    desc: Best website.
+    code: 000
+    time: 3.009598429
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 000
+    time: 3.008876115
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 000
+    time: 3.008579726
+  - alias: Code server
+    desc: Code server.
+    code: 000
+    time: 3.008906610
+  - alias: Remote Server
+    desc: Remote server.
+    code: 000
+    time: 3.009143473
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .104566400
+
