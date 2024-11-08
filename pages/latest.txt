@@ -1,0 +1,7 @@
+LOG_FULL_PATH: "localhost/log_1.yml"
+LOG_REPO: ""
+LOG_BRNC: ""
+LOG_PATH: ""
+LOG_NAME: "log_"
+LOG_WEEK: "1"
+LOG_TYPE: ".yml"

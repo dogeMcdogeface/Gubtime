@@ -1,4 +1,5 @@
-const latestUrl = "https://raw.githubusercontent.com/dogeMcdogeface/Gubtime/master/pages/logs/latest.txt";
+const latestUrl = "http://localhost/latest.txt";
+
 let logsData;
 let maxLogFiles = 8; //TODO
 
@@ -35,11 +36,13 @@ async function loadDataAndSendSignal() {
             const logFile = `${logRepo}/${logBrnc}/${logPath}${logName}${logWeek}${logType}`;
             console.log("Composed Log Path: ", logFile);
             // Construct URL for the latest log file
-            const logUrl = `https://raw.githubusercontent.com/${logFile}?${Date.now()}`;
+            const logUrl = `http://localhost/${logFile}?${Date.now()}`;
             // Fetch the log file
-            const yamlData = await fetchData(logUrl);
+            let yamlData = await fetchData(logUrl);
             logWeek--;
             if (yamlData) {
+                yamlData = yamlData.replace(/\\n/g, '\n');
+                console.log("bibi", yamlData);
                 const tmpData = jsyaml.load(yamlData);
                 if (!logsData || logsData.length === 0) {
                     logsData = tmpData;
