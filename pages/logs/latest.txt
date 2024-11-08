@@ -1,7 +1,0 @@
-LOG_FULL_PATH: "pages/logs/log_31.yml"
-LOG_REPO: "dogeMcdogeface/Gubtime"
-LOG_BRNC: "master"
-LOG_PATH: "pages/logs/"
-LOG_NAME: "log_"
-LOG_WEEK: "31"
-LOG_TYPE: ".yml"
