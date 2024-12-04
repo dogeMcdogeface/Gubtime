@@ -268,3 +268,30 @@
     code: 200
     time: .111066013
 
+- entry:
+  - timst: 2024-12-04T16:10:11.491595053Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .624731349
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 302
+    time: .793147882
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 4.530646815
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .633899122
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .630424569
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .117001325
+
