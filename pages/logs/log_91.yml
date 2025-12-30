@@ -1,0 +1,27 @@
+- entry:
+  - timst: 2025-12-30T00:47:08.798112356Z
+  - alias: Main Website
+    desc: Best website.
+    code: 200
+    time: .460473816
+  - alias: Speedtest.
+    desc: Speedtest measures.
+    code: 500
+    time: .616030056
+  - alias: Dashboard
+    desc: Dashboard.
+    code: 200
+    time: 7.414196347
+  - alias: Code server
+    desc: Code server.
+    code: 502
+    time: .554176244
+  - alias: Remote Server
+    desc: Remote server.
+    code: 401
+    time: .471009932
+  - alias: Google300
+    desc: Probably always up.
+    code: 200
+    time: .109116146
+
